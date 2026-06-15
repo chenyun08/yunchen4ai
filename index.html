@@ -16,6 +16,41 @@ body{font-family:-apple-system,'SF Pro Display','Helvetica Neue',Helvetica,Arial
 ::selection{background:#64ffda;color:#0a0e27}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+@media (max-width: 768px) {
+  .hero-grid { grid-template-columns: 1fr !important; gap: 0 !important; }
+  .hero-right { display: none !important; }
+  .hero-name { font-size: 56px !important; }
+  .hero-tagline { font-size: 22px !important; }
+  .hero-badge { font-size: 12px !important; padding: 5px 12px !important; margin-bottom: 24px !important; }
+  .hero-badge span { font-size: 12px !important; }
+  .hero-stats { gap: 24px !important; margin-top: 40px !important; }
+  .hero-stat-val { font-size: 24px !important; }
+  .hero-section { padding: 100px 20px 60px !important; min-height: auto !important; }
+  .nav-wrap { padding: 0 20px !important; }
+  .nav-links { gap: 16px !important; }
+  .nav-link { font-size: 12px !important; }
+  .work-section, .experience-section, .footer-section { padding: 60px 20px !important; }
+  .section-h2 { font-size: 30px !important; }
+  .work-grid { grid-template-columns: 1fr !important; }
+  .product-card { padding: 32px 24px !important; height: auto !important; min-height: 280px !important; }
+  .product-title { font-size: 22px !important; }
+  .product-desc { font-size: 14px !important; }
+  .exp-row { grid-template-columns: 1fr !important; gap: 12px !important; padding-bottom: 28px !important; margin-bottom: 28px !important; }
+  .exp-meta { display: flex !important; gap: 12px !important; }
+  .exp-title { font-size: 17px !important; }
+  .modal-content { max-width: 100% !important; border-radius: 16px !important; }
+  .modal-header { padding: 24px 24px 20px !important; }
+  .modal-title { font-size: 22px !important; }
+  .modal-body { padding: 20px 24px 24px !important; }
+  .modal-body-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
+  .modal-metrics { gap: 8px !important; }
+  .modal-metric { min-width: 0 !important; padding: 12px 14px !important; }
+  .modal-metric-val { font-size: 20px !important; }
+  .cta-buttons { flex-wrap: wrap !important; gap: 10px !important; }
+  .cta-buttons button, .cta-buttons a { padding: 12px 22px !important; font-size: 14px !important; }
+  .footer-h2 { font-size: 30px !important; }
+}
 </style>
 </head>
 <body>
@@ -75,22 +110,22 @@ const jobs=[
 function DetailModal({product,detail,onClose}){
   useEffect(()=>{document.body.style.overflow="hidden";return()=>{document.body.style.overflow=""};},[]);
   return ce("div",{onClick:onClose,style:{position:"fixed",inset:0,zIndex:1000,background:"rgba(0,0,0,.5)",backdropFilter:"blur(8px)",display:"flex",alignItems:"center",justifyContent:"center",padding:24}},
-    ce("div",{onClick:e=>e.stopPropagation(),style:{background:"#fff",borderRadius:24,maxWidth:800,width:"100%",maxHeight:"85vh",overflow:"auto",position:"relative",animation:"fadeUp .3s ease"}},
-      ce("div",{style:{background:product.gradient,borderRadius:"24px 24px 0 0",padding:"36px 40px 28px",position:"relative",overflow:"hidden"}},
+    ce("div",{onClick:e=>e.stopPropagation(),className:"modal-content",style:{background:"#fff",borderRadius:24,maxWidth:800,width:"100%",maxHeight:"85vh",overflow:"auto",position:"relative",animation:"fadeUp .3s ease"}},
+      ce("div",{className:"modal-header",style:{background:product.gradient,borderRadius:"24px 24px 0 0",padding:"36px 40px 28px",position:"relative",overflow:"hidden"}},
         ce("div",{style:{position:"absolute",top:-40,right:-40,width:160,height:160,borderRadius:"50%",background:"radial-gradient(circle, "+product.accent+"20 0%, transparent 70%)"}}),
         ce("button",{onClick:onClose,style:{position:"absolute",top:16,right:16,width:32,height:32,borderRadius:"50%",background:"rgba(255,255,255,.15)",border:"none",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}},
           ce("svg",{width:14,height:14,viewBox:"0 0 14 14",fill:"none"},ce("path",{d:"M3 3l8 8M11 3l-8 8",stroke:"#fff",strokeWidth:1.5,strokeLinecap:"round"}))),
         ce("div",{style:{fontSize:11,fontWeight:500,color:product.accent,letterSpacing:".06em",textTransform:"uppercase",marginBottom:8,opacity:.9}},product.subtitle),
-        ce("h2",{style:{fontSize:28,fontWeight:700,color:"#fff",margin:0,letterSpacing:"-.02em"}},product.title),
+        ce("h2",{className:"modal-title",style:{fontSize:28,fontWeight:700,color:"#fff",margin:0,letterSpacing:"-.02em"}},product.title),
         ce("p",{style:{fontSize:15,color:"rgba(255,255,255,.6)",marginTop:8,lineHeight:1.5,maxWidth:500}},product.desc)
       ),
-      ce("div",{style:{padding:"32px 40px 40px"}},
-        ce("div",{style:{display:"flex",gap:16,marginBottom:32,flexWrap:"wrap"}},
-          detail.metrics.map((m,i)=>ce("div",{key:i,style:{flex:1,minWidth:140,background:"#f5f5f7",borderRadius:14,padding:"18px 20px"}},
-            ce("div",{style:{fontSize:28,fontWeight:700,color:"#1d1d1f",letterSpacing:"-.02em"}},m.val),
+      ce("div",{className:"modal-body",style:{padding:"32px 40px 40px"}},
+        ce("div",{className:"modal-metrics",style:{display:"flex",gap:16,marginBottom:32,flexWrap:"wrap"}},
+          detail.metrics.map((m,i)=>ce("div",{key:i,className:"modal-metric",style:{flex:1,minWidth:140,background:"#f5f5f7",borderRadius:14,padding:"18px 20px"}},
+            ce("div",{className:"modal-metric-val",style:{fontSize:28,fontWeight:700,color:"#1d1d1f",letterSpacing:"-.02em"}},m.val),
             ce("div",{style:{fontSize:12,color:"#86868b",marginTop:2}},m.label)))
         ),
-        ce("div",{style:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:28}},
+        ce("div",{className:"modal-body-grid",style:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:28}},
           ce("div",null,
             ce("div",{style:{fontSize:12,fontWeight:600,letterSpacing:".02em",color:"#ff3b30",marginBottom:10,display:"flex",alignItems:"center",gap:6}},
               ce("svg",{width:16,height:16,viewBox:"0 0 16 16",fill:"none"},ce("circle",{cx:8,cy:8,r:6.5,stroke:"#ff3b30",strokeWidth:1.2}),ce("path",{d:"M8 5v3.5M8 10.5v.5",stroke:"#ff3b30",strokeWidth:1.3,strokeLinecap:"round"})),
@@ -114,7 +149,7 @@ function DetailModal({product,detail,onClose}){
 function ProjectCard({p,idx,onOpen}){
   const[hovered,setHovered]=useState(false);
   return ce(FadeIn,{delay:idx*0.1},
-    ce("div",{onMouseEnter:()=>setHovered(true),onMouseLeave:()=>setHovered(false),
+    ce("div",{onMouseEnter:()=>setHovered(true),onMouseLeave:()=>setHovered(false),className:"product-card",
       style:{background:p.gradient,borderRadius:24,padding:"48px 44px",cursor:"default",
         transition:"transform .4s cubic-bezier(.25,.1,.25,1), box-shadow .4s ease",
         transform:hovered?"translateY(-6px) scale(1.01)":"none",
@@ -123,8 +158,8 @@ function ProjectCard({p,idx,onOpen}){
       ce("div",{style:{position:"absolute",top:-60,right:-60,width:200,height:200,borderRadius:"50%",background:"radial-gradient(circle, "+p.accent+"15 0%, transparent 70%)",transition:"opacity .4s",opacity:hovered?1:0.3}}),
       ce("div",{style:{position:"relative",zIndex:1,display:"flex",flexDirection:"column",flex:1}},
         ce("div",{style:{fontSize:12,fontWeight:500,color:p.accent,letterSpacing:".06em",textTransform:"uppercase",marginBottom:12,opacity:.9}},p.subtitle),
-        ce("h3",{style:{fontSize:28,fontWeight:700,color:"#fff",margin:"0 0 12px",letterSpacing:"-.02em",lineHeight:1.2}},p.title),
-        ce("p",{style:{fontSize:15,color:"rgba(255,255,255,.65)",lineHeight:1.6,maxWidth:420,marginBottom:24,flex:1}},p.desc),
+        ce("h3",{className:"product-title",style:{fontSize:28,fontWeight:700,color:"#fff",margin:"0 0 12px",letterSpacing:"-.02em",lineHeight:1.2}},p.title),
+        ce("p",{className:"product-desc",style:{fontSize:15,color:"rgba(255,255,255,.65)",lineHeight:1.6,maxWidth:420,marginBottom:24,flex:1}},p.desc),
         ce("div",{style:{display:"inline-flex",alignItems:"baseline",gap:10,background:"rgba(255,255,255,.08)",borderRadius:12,padding:"12px 18px",border:"1px solid rgba(255,255,255,.1)",alignSelf:"flex-start"}},
           ce("span",{style:{fontSize:24,fontWeight:700,color:p.accent}},p.stat),
           ce("span",{style:{fontSize:12,color:"rgba(255,255,255,.5)"}},p.statLabel))
@@ -149,41 +184,39 @@ function Site(){
 
   return ce("div",{style:{fontFamily:"-apple-system,'SF Pro Display','Helvetica Neue',Helvetica,Arial,sans-serif",background:"#0a0e27",color:"#e8e8e8",overflowX:"hidden"}},
 
-    // NAV
-    ce("nav",{style:{position:"fixed",top:0,left:0,right:0,zIndex:100,background:scrollY>50?"rgba(10,14,39,.88)":"transparent",backdropFilter:scrollY>50?"saturate(180%) blur(20px)":"none",borderBottom:scrollY>50?"1px solid rgba(255,255,255,.06)":"none",transition:"all .3s",padding:"0 40px"}},
+    ce("nav",{className:"nav-wrap",style:{position:"fixed",top:0,left:0,right:0,zIndex:100,background:scrollY>50?"rgba(10,14,39,.88)":"transparent",backdropFilter:scrollY>50?"saturate(180%) blur(20px)":"none",borderBottom:scrollY>50?"1px solid rgba(255,255,255,.06)":"none",transition:"all .3s",padding:"0 40px"}},
       ce("div",{style:{maxWidth:1200,margin:"0 auto",display:"flex",justifyContent:"space-between",alignItems:"center",height:56}},
         ce("span",{style:{fontSize:16,fontWeight:700,letterSpacing:"-.02em",cursor:"pointer",color:"#fff"},onClick:()=>scrollTo("hero")},"Yun Chen"),
-        ce("div",{style:{display:"flex",gap:28,alignItems:"center"}},
+        ce("div",{className:"nav-links",style:{display:"flex",gap:28,alignItems:"center"}},
           [["Work","work"],["Experience","experience"]].map(([l,id])=>
-            ce("span",{key:id,onClick:()=>scrollTo(id),style:{fontSize:13,color:"rgba(255,255,255,.6)",cursor:"pointer",fontWeight:400}},l)),
-          ce("a",{href:"https://www.linkedin.com/in/yun-chen-6b22a448/",target:"_blank",rel:"noreferrer",
+            ce("span",{key:id,onClick:()=>scrollTo(id),className:"nav-link",style:{fontSize:13,color:"rgba(255,255,255,.6)",cursor:"pointer",fontWeight:400}},l)),
+          ce("a",{href:"https://www.linkedin.com/in/yun-chen-6b22a448/",target:"_blank",rel:"noreferrer",className:"nav-link",
             style:{fontSize:13,color:"#64ffda",textDecoration:"none",fontWeight:500}},"LinkedIn ↗")
         )
       )
     ),
 
-    // HERO
-    ce("section",{id:"hero",style:{minHeight:"100vh",display:"flex",alignItems:"center",padding:"120px 40px 80px",position:"relative"}},
+    ce("section",{id:"hero",className:"hero-section",style:{minHeight:"100vh",display:"flex",alignItems:"center",padding:"120px 40px 80px",position:"relative"}},
       ce("div",{style:{position:"absolute",top:"5%",left:"15%",width:500,height:500,borderRadius:"50%",background:"radial-gradient(circle, rgba(100,255,218,.08) 0%, transparent 70%)",animation:"float 8s ease-in-out infinite",pointerEvents:"none"}}),
       ce("div",{style:{position:"absolute",bottom:"15%",left:"5%",width:400,height:400,borderRadius:"50%",background:"radial-gradient(circle, rgba(0,113,227,.1) 0%, transparent 70%)",animation:"float 6s ease-in-out infinite 2s",pointerEvents:"none"}}),
 
-      ce("div",{style:{maxWidth:1200,width:"100%",margin:"0 auto",display:"grid",gridTemplateColumns:"1fr 1fr",gap:60,alignItems:"center",position:"relative",zIndex:1}},
+      ce("div",{className:"hero-grid",style:{maxWidth:1200,width:"100%",margin:"0 auto",display:"grid",gridTemplateColumns:"1fr 1fr",gap:60,alignItems:"center",position:"relative",zIndex:1}},
         ce("div",null,
           ce(FadeIn,null,
-            ce("div",{style:{display:"inline-flex",alignItems:"center",gap:8,padding:"6px 16px",borderRadius:24,border:"1px solid rgba(100,255,218,.25)",background:"rgba(100,255,218,.05)",marginBottom:32}},
+            ce("div",{className:"hero-badge",style:{display:"inline-flex",alignItems:"center",gap:8,padding:"6px 16px",borderRadius:24,border:"1px solid rgba(100,255,218,.25)",background:"rgba(100,255,218,.05)",marginBottom:32}},
               ce("span",{style:{color:"#64ffda",fontSize:14}},"✦"),
               ce("span",{style:{fontSize:13,color:"#a8e6d9",fontWeight:500}},"AI Product Manager · PayPal · San Jose, CA"))
           ),
           ce(FadeIn,{delay:0.1},
-            ce("h1",{style:{fontSize:90,fontWeight:700,letterSpacing:"-.05em",lineHeight:1,margin:"0 0 24px",color:"#fff"}},"Yun Chen")
+            ce("h1",{className:"hero-name",style:{fontSize:90,fontWeight:700,letterSpacing:"-.05em",lineHeight:1,margin:"0 0 24px",color:"#fff"}},"Yun Chen")
           ),
           ce(FadeIn,{delay:0.2},
-            ce("h2",{style:{fontSize:32,fontWeight:600,letterSpacing:"-.02em",lineHeight:1.2,margin:"0 0 18px",color:"rgba(255,255,255,.9)"}},
+            ce("h2",{className:"hero-tagline",style:{fontSize:32,fontWeight:600,letterSpacing:"-.02em",lineHeight:1.2,margin:"0 0 18px",color:"rgba(255,255,255,.9)"}},
               "Delivering ",
               ce("span",{style:{background:"linear-gradient(135deg, #64ffda 0%, #40a9ff 100%)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}},"AI at scale"))
           ),
           ce(FadeIn,{delay:0.3},
-            ce("div",{style:{display:"flex",gap:12,alignItems:"center",marginTop:8}},
+            ce("div",{className:"cta-buttons",style:{display:"flex",gap:12,alignItems:"center",marginTop:8}},
               ce("button",{onClick:()=>scrollTo("work"),style:{padding:"14px 32px",borderRadius:40,background:"linear-gradient(135deg, #64ffda 0%, #40a9ff 100%)",color:"#0a0e27",border:"none",fontSize:15,fontWeight:600,cursor:"pointer",transition:"transform .2s, box-shadow .2s"},
                 onMouseEnter:e=>{e.target.style.transform="scale(1.04)";e.target.style.boxShadow="0 8px 30px rgba(100,255,218,.3)"},
                 onMouseLeave:e=>{e.target.style.transform="scale(1)";e.target.style.boxShadow="none"}},"Explore my work ↓"),
@@ -193,48 +226,46 @@ function Site(){
             )
           ),
           ce(FadeIn,{delay:0.4},
-            ce("div",{style:{display:"flex",gap:40,marginTop:64,flexWrap:"wrap"}},
+            ce("div",{className:"hero-stats",style:{display:"flex",gap:40,marginTop:64,flexWrap:"wrap"}},
               [{v:"6",l:"AI Products"},{v:"$26M+",l:"Impact"},{v:"~50%",l:"Efficiency"},{v:"10+",l:"Years"}].map((m,i)=>
                 ce("div",{key:i},
-                  ce("div",{style:{fontSize:32,fontWeight:700,letterSpacing:"-.03em",color:"#fff"}},m.v),
+                  ce("div",{className:"hero-stat-val",style:{fontSize:32,fontWeight:700,letterSpacing:"-.03em",color:"#fff"}},m.v),
                   ce("div",{style:{fontSize:12,color:"rgba(255,255,255,.4)",marginTop:2}},m.l)))
             )
           )
         ),
-        ce("div",null) // right side blank for photo
+        ce("div",{className:"hero-right"})
       )
     ),
 
-    // WORK
-    ce("section",{id:"work",style:{padding:"40px 40px 100px"}},
+    ce("section",{id:"work",className:"work-section",style:{padding:"40px 40px 100px"}},
       ce("div",{style:{maxWidth:1100,margin:"0 auto"}},
         ce(FadeIn,null,
           ce("div",{style:{marginBottom:48}},
             ce("span",{style:{fontSize:13,fontWeight:600,color:"#64ffda",letterSpacing:".04em"}},"PRODUCT PORTFOLIO"),
-            ce("h2",{style:{fontSize:44,fontWeight:700,letterSpacing:"-.03em",margin:"4px 0 8px",color:"#fff"}},"Case Studies"),
+            ce("h2",{className:"section-h2",style:{fontSize:44,fontWeight:700,letterSpacing:"-.03em",margin:"4px 0 8px",color:"#fff"}},"Case Studies"),
             ce("p",{style:{fontSize:17,color:"rgba(255,255,255,.5)",margin:0}},"AI products I built from concept to production"))
         ),
-        ce("div",{style:{display:"grid",gridTemplateColumns:"repeat(2, 1fr)",gap:20}},
+        ce("div",{className:"work-grid",style:{display:"grid",gridTemplateColumns:"repeat(2, 1fr)",gap:20}},
           products.map((p,i)=>ce(ProjectCard,{key:p.id,p,idx:i,onOpen:()=>setOpenDetail(i)})))
       )
     ),
 
     openDetail!==null && ce(DetailModal,{product:products[openDetail],detail:productDetails[openDetail],onClose:()=>setOpenDetail(null)}),
 
-    // EXPERIENCE
-    ce("section",{id:"experience",style:{background:"rgba(255,255,255,.02)",padding:"100px 40px",borderTop:"1px solid rgba(255,255,255,.05)",borderBottom:"1px solid rgba(255,255,255,.05)"}},
+    ce("section",{id:"experience",className:"experience-section",style:{background:"rgba(255,255,255,.02)",padding:"100px 40px",borderTop:"1px solid rgba(255,255,255,.05)",borderBottom:"1px solid rgba(255,255,255,.05)"}},
       ce("div",{style:{maxWidth:900,margin:"0 auto"}},
         ce(FadeIn,null,
           ce("span",{style:{fontSize:13,fontWeight:600,color:"#64ffda",letterSpacing:".04em"}},"CAREER"),
-          ce("h2",{style:{fontSize:44,fontWeight:700,letterSpacing:"-.03em",margin:"4px 0 56px",color:"#fff"}},"Experience")
+          ce("h2",{className:"section-h2",style:{fontSize:44,fontWeight:700,letterSpacing:"-.03em",margin:"4px 0 56px",color:"#fff"}},"Experience")
         ),
         jobs.map((j,i)=>ce(FadeIn,{key:i,delay:i*0.08},
-          ce("div",{style:{display:"grid",gridTemplateColumns:"200px 1fr",gap:32,paddingBottom:40,marginBottom:40,borderBottom:i<jobs.length-1?"1px solid rgba(255,255,255,.06)":"none"}},
-            ce("div",null,
+          ce("div",{className:"exp-row",style:{display:"grid",gridTemplateColumns:"200px 1fr",gap:32,paddingBottom:40,marginBottom:40,borderBottom:i<jobs.length-1?"1px solid rgba(255,255,255,.06)":"none"}},
+            ce("div",{className:"exp-meta"},
               ce("div",{style:{fontSize:13,color:"rgba(255,255,255,.5)",fontWeight:500}},j.date),
               ce("div",{style:{fontSize:13,color:"rgba(255,255,255,.4)",marginTop:2}},j.loc)),
             ce("div",null,
-              ce("h3",{style:{fontSize:20,fontWeight:600,margin:"0 0 2px",letterSpacing:"-.01em",color:"#fff"}},j.title),
+              ce("h3",{className:"exp-title",style:{fontSize:20,fontWeight:600,margin:"0 0 2px",letterSpacing:"-.01em",color:"#fff"}},j.title),
               ce("div",{style:{fontSize:15,color:"rgba(255,255,255,.55)",marginBottom:14}},j.company+" · "+j.sub),
               ce("div",{style:{display:"flex",gap:8,flexWrap:"wrap"}},
                 j.highlights.map((h,hi)=>ce("span",{key:hi,style:{fontSize:12,fontWeight:500,padding:"4px 12px",borderRadius:20,background:"rgba(100,255,218,.08)",color:"#a8e6d9",border:"1px solid rgba(100,255,218,.15)"}},h))))
@@ -243,10 +274,9 @@ function Site(){
       )
     ),
 
-    // FOOTER
-    ce("section",{style:{background:"rgba(0,0,0,.4)",padding:"80px 40px",textAlign:"center",borderTop:"1px solid rgba(255,255,255,.05)"}},
+    ce("section",{className:"footer-section",style:{background:"rgba(0,0,0,.4)",padding:"80px 40px",textAlign:"center",borderTop:"1px solid rgba(255,255,255,.05)"}},
       ce(FadeIn,null,
-        ce("h2",{style:{fontSize:40,fontWeight:700,color:"#fff",letterSpacing:"-.03em",margin:"0 0 12px"}},"Let's connect"),
+        ce("h2",{className:"footer-h2",style:{fontSize:40,fontWeight:700,color:"#fff",letterSpacing:"-.03em",margin:"0 0 12px"}},"Let's connect"),
         ce("p",{style:{fontSize:17,color:"rgba(255,255,255,.5)",marginBottom:32}},"Open to AI product leadership roles and advisory opportunities"),
         ce("a",{href:"https://www.linkedin.com/in/yun-chen-6b22a448/",target:"_blank",rel:"noreferrer",
           style:{display:"inline-flex",alignItems:"center",gap:8,padding:"14px 32px",borderRadius:40,background:"linear-gradient(135deg, #64ffda 0%, #40a9ff 100%)",color:"#0a0e27",fontSize:15,fontWeight:600,textDecoration:"none",transition:"transform .2s"},
