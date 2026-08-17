@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Yun Chen — AI Product Leader</title>
-<meta name="description" content="Yun Chen — Lead Product Manager building AI-powered decisioning at PayPal. 8 AI products, $26M+ impact.">
+<meta name="description" content="Yun Chen — Lead Product Manager building AI-powered decisioning at PayPal. 9 AI products, $26M+ impact.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>⚡</text></svg>">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
@@ -73,6 +73,7 @@ const products=[
   {id:"ppc",title:"Presentment Parity",subtitle:"Commerce · Vision AI",desc:"Agentic web crawler + Vision AI that validates merchant checkout pages — protecting $10B TPV and saving $2M in vendor costs.",stat:"$10B",statLabel:"TPV protected",gradient:"linear-gradient(135deg,#1a0a0a 0%,#2b1515 50%,#3d1f1f 100%)",accent:"#ff8a80"},
   {id:"ngrp",title:"Strategy Transformation",subtitle:"Credit · Platform Migration",desc:"Led migration of BNPL logic from fragmented batch systems to the Next-Generation Risk Platform — cutting strategy TTM from 2 weeks to 3 days with near-instantaneous deployment.",stat:"2wk → 3d",statLabel:"Strategy TTM",gradient:"linear-gradient(135deg,#0a1a2a 0%,#102840 50%,#1a3a5c 100%)",accent:"#42a5f5"},
   {id:"evd",title:"Executive Visibility Dashboard",subtitle:"Tooling · Claude Artifacts",desc:"AI-generated interactive dashboard replacing manual data stitching for VP+ executive readouts — now the primary source for weekly status reports on the department's #1 priority program.",stat:"VP+",statLabel:"Weekly readouts",gradient:"linear-gradient(135deg,#1a1a2e 0%,#2e1a3a 50%,#4a1a5c 100%)",accent:"#ce93d8"},
+  {id:"onb",title:"Onboarding Flow Modernization",subtitle:"Platform · Orchestration",desc:"0-to-1 transformation of global consumer and merchant onboarding — replacing fragmented parallel silos with an intelligent risk-then-compliance orchestration model that slashed latency and boosted signup conversion.",stat:"30% →",statLabel:"Signup conversion",gradient:"linear-gradient(135deg,#0a1a0a 0%,#1a2e1a 50%,#2a4a2a 100%)",accent:"#81c784"},
 ];
 
 const productDetails=[
@@ -84,10 +85,11 @@ const productDetails=[
   {problem:"PayPal loses volume when payment options are missing at checkout — gaps go undetected, causing silent revenue leakage. BNPL rollout is delayed by manual validation.",approach:["Agentic web crawling of merchant checkout pages","Vision AI detects PayPal/BNPL option presence and correctness","Scoring engine compares against expected configuration","Alert system surfaces gaps to merchant teams for remediation"],metrics:[{val:"$10B",label:"TPV protected"},{val:"$2M",label:"Vendor cost saved"},{val:"80%",label:"Efficiency gain"}]},
   {problem:"Legacy BNPL strategies were fragmented across batch systems, causing high latency in credit decisioning and 2-week delays for strategy updates.",approach:["Led migration of BNPL logic to the Next-Generation Risk Platform (NGRP)","Improved data ingestion quality and real-time feature availability","Enabled near-instantaneous strategy deployment replacing batch processing","Achieved more precise risk scoring through real-time decisioning"],metrics:[{val:"2wk → 3d",label:"Strategy TTM"},{val:"0 → 1",label:"Platform migration"},{val:"Real-time",label:"Decisioning"}]},
   {problem:"Tracking adoption of a new OS across global Risk infrastructure was a manual, error-prone task involving multiple data sources that required weekly updates for VP-level review.",approach:["Leveraged Claude Artifacts to build a dynamic, visual dashboard from raw data","Input raw adoption metrics and program milestones into AI-generated interface","Created interactive visualizations and progress tracking for executive consumption","Became the primary source for weekly VP+ status reports"],metrics:[{val:"VP+",label:"Weekly readouts"},{val:"Real-time",label:"Transparency"},{val:"0 → 1",label:"Dashboard tooling"}]},
+  {problem:"Identity, fraud, credit, and compliance operated in parallel silos during onboarding — causing redundant verification loops, high vendor costs, and exploitable risk blind spots. Only 30% of customers successfully completed the signup process.",approach:["Built a unified verification ingestion layer — standardized single-entry service for email, phone, and address across all onboarding entry points","Replaced blind parallel execution with intelligent sequential orchestration (risk-then-compliance) — fast-path risk filters weed out bad actors early, preventing expensive downstream compliance/KYC lookups","Designed cross-domain decision sharing between Identity, Fraud, Compliance, and Credit engines for single-source-of-truth decisioning","Partnered across Growth/GTM, Legal/Compliance, and Risk Engineering to align regulatory obligations with funnel conversion goals"],metrics:[{val:"30% →",label:"Signup conversion"},{val:"Lower",label:"Vendor API costs"},{val:"Closed",label:"Cross-domain gaps"}]},
 ];
 
 const jobs=[
-  {title:"Lead Product Manager",company:"PayPal",sub:"AI & Decision Platform",loc:"San Jose",date:"2023 — Present",highlights:["8 GenAI products shipped","$26M+ impact","4 time zones"]},
+  {title:"Lead Product Manager",company:"PayPal",sub:"AI & Decision Platform",loc:"San Jose",date:"2023 — Present",highlights:["9 GenAI products shipped","$26M+ impact","4 time zones"]},
   {title:"Lead Manager",company:"PayPal",sub:"Global Seller Risk",loc:"Shanghai",date:"2021 — 2023",highlights:["$10M revenue enablement","$15M loss mitigated","C-level presentations"]},
   {title:"Senior Data Scientist",company:"PayPal",sub:"Global Seller Risk",loc:"Shanghai",date:"2016 — 2021",highlights:["12M sellers managed","13 products launched","20% cost reduction"]},
   {title:"Business Consultant",company:"UnionPay Advisors",sub:"Financial Analytics",loc:"Shanghai",date:"2015 — 2016",highlights:["50M account models","3M card portfolios"]},
@@ -103,29 +105,23 @@ function DetailModal({product,detail,onClose}){
           ce("svg",{width:14,height:14,viewBox:"0 0 14 14",fill:"none"},ce("path",{d:"M3 3l8 8M11 3l-8 8",stroke:"#fff",strokeWidth:1.5,strokeLinecap:"round"}))),
         ce("div",{style:{fontSize:11,fontWeight:500,color:product.accent,letterSpacing:".06em",textTransform:"uppercase",marginBottom:8,opacity:.9}},product.subtitle),
         ce("h2",{className:"modal-title",style:{fontSize:28,fontWeight:700,color:"#fff",margin:0,letterSpacing:"-.02em"}},product.title),
-        ce("p",{style:{fontSize:15,color:"rgba(255,255,255,.6)",marginTop:8,lineHeight:1.5,maxWidth:500}},product.desc)
-      ),
+        ce("p",{style:{fontSize:15,color:"rgba(255,255,255,.6)",marginTop:8,lineHeight:1.5,maxWidth:500}},product.desc)),
       ce("div",{className:"modal-body",style:{padding:"32px 40px 40px"}},
         ce("div",{className:"modal-metrics",style:{display:"flex",gap:16,marginBottom:32,flexWrap:"wrap"}},
           detail.metrics.map((m,i)=>ce("div",{key:i,className:"modal-metric",style:{flex:1,minWidth:140,background:"#f5f5f7",borderRadius:14,padding:"18px 20px"}},
             ce("div",{className:"modal-metric-val",style:{fontSize:28,fontWeight:700,color:"#1d1d1f",letterSpacing:"-.02em"}},m.val),
-            ce("div",{style:{fontSize:12,color:"#86868b",marginTop:2}},m.label)))
-        ),
+            ce("div",{style:{fontSize:12,color:"#86868b",marginTop:2}},m.label)))),
         ce("div",{className:"modal-body-grid",style:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:28}},
           ce("div",null,
             ce("div",{style:{fontSize:12,fontWeight:600,letterSpacing:".02em",color:"#ff3b30",marginBottom:10,display:"flex",alignItems:"center",gap:6}},
-              ce("svg",{width:16,height:16,viewBox:"0 0 16 16",fill:"none"},ce("circle",{cx:8,cy:8,r:6.5,stroke:"#ff3b30",strokeWidth:1.2}),ce("path",{d:"M8 5v3.5M8 10.5v.5",stroke:"#ff3b30",strokeWidth:1.3,strokeLinecap:"round"})),
-              "Why it matters"),
-            ce("p",{style:{fontSize:14,color:"#1d1d1f",lineHeight:1.7}},detail.problem)
-          ),
+              ce("svg",{width:16,height:16,viewBox:"0 0 16 16",fill:"none"},ce("circle",{cx:8,cy:8,r:6.5,stroke:"#ff3b30",strokeWidth:1.2}),ce("path",{d:"M8 5v3.5M8 10.5v.5",stroke:"#ff3b30",strokeWidth:1.3,strokeLinecap:"round"})),"Why it matters"),
+            ce("p",{style:{fontSize:14,color:"#1d1d1f",lineHeight:1.7}},detail.problem)),
           ce("div",null,
             ce("div",{style:{fontSize:12,fontWeight:600,letterSpacing:".02em",color:"#0071e3",marginBottom:10,display:"flex",alignItems:"center",gap:6}},
-              ce("svg",{width:16,height:16,viewBox:"0 0 16 16",fill:"none"},ce("path",{d:"M3 8h10m0 0l-3-3m3 3l-3 3",stroke:"#0071e3",strokeWidth:1.3,strokeLinecap:"round",strokeLinejoin:"round"})),
-              "How I solved it"),
+              ce("svg",{width:16,height:16,viewBox:"0 0 16 16",fill:"none"},ce("path",{d:"M3 8h10m0 0l-3-3m3 3l-3 3",stroke:"#0071e3",strokeWidth:1.3,strokeLinecap:"round",strokeLinejoin:"round"})),"How I solved it"),
             detail.approach.map((a,i)=>ce("div",{key:i,style:{display:"flex",gap:10,marginBottom:10,alignItems:"flex-start"}},
               ce("div",{style:{width:22,height:22,borderRadius:"50%",background:"#0071e3",color:"#fff",fontSize:11,fontWeight:600,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,marginTop:1}},i+1),
-              ce("div",{style:{fontSize:14,color:"#1d1d1f",lineHeight:1.6}},a)))
-          )
+              ce("div",{style:{fontSize:14,color:"#1d1d1f",lineHeight:1.6}},a))))
         )
       )
     )
@@ -148,8 +144,7 @@ function ProjectCard({p,idx,onOpen}){
         ce("p",{className:"product-desc",style:{fontSize:15,color:"rgba(255,255,255,.65)",lineHeight:1.6,maxWidth:420,marginBottom:24,flex:1}},p.desc),
         ce("div",{style:{display:"inline-flex",alignItems:"baseline",gap:10,background:"rgba(255,255,255,.08)",borderRadius:12,padding:"12px 18px",border:"1px solid rgba(255,255,255,.1)",alignSelf:"flex-start"}},
           ce("span",{style:{fontSize:24,fontWeight:700,color:p.accent}},p.stat),
-          ce("span",{style:{fontSize:12,color:"rgba(255,255,255,.5)"}},p.statLabel))
-      ),
+          ce("span",{style:{fontSize:12,color:"rgba(255,255,255,.5)"}},p.statLabel))),
       ce("div",{style:{position:"absolute",bottom:28,right:28,width:40,height:40,borderRadius:"50%",background:hovered?"rgba(255,255,255,.18)":"rgba(255,255,255,.08)",display:"flex",alignItems:"center",justifyContent:"center",transition:"all .3s",transform:hovered?"translate(0,0)":"translate(4px,4px)",opacity:hovered?1:0.6,pointerEvents:"none"}},
         ce("svg",{width:16,height:16,viewBox:"0 0 16 16",fill:"none"},ce("path",{d:"M3 13L13 3M13 3H5M13 3v8",stroke:"#fff",strokeWidth:1.5,strokeLinecap:"round",strokeLinejoin:"round"})))
     )
@@ -157,21 +152,17 @@ function ProjectCard({p,idx,onOpen}){
 }
 
 function Site(){
-  const[scrollY,setScrollY]=useState(0);
-  const[openDetail,setOpenDetail]=useState(null);
+  const[scrollY,setScrollY]=useState(0);const[openDetail,setOpenDetail]=useState(null);
   useEffect(()=>{const fn=()=>setScrollY(window.scrollY);window.addEventListener("scroll",fn,{passive:true});return()=>window.removeEventListener("scroll",fn);},[]);
   const scrollTo=id=>document.getElementById(id)?.scrollIntoView({behavior:"smooth"});
 
   return ce("div",{style:{fontFamily:"-apple-system,'SF Pro Display','Helvetica Neue',Helvetica,Arial,sans-serif",background:"#0a0e27",color:"#e8e8e8",overflowX:"hidden"}},
-
     ce("nav",{className:"nav-wrap",style:{position:"fixed",top:0,left:0,right:0,zIndex:100,background:scrollY>50?"rgba(10,14,39,.88)":"transparent",backdropFilter:scrollY>50?"saturate(180%) blur(20px)":"none",borderBottom:scrollY>50?"1px solid rgba(255,255,255,.06)":"none",transition:"all .3s",padding:"0 40px"}},
       ce("div",{style:{maxWidth:1200,margin:"0 auto",display:"flex",justifyContent:"space-between",alignItems:"center",height:56}},
         ce("span",{style:{fontSize:16,fontWeight:700,letterSpacing:"-.02em",cursor:"pointer",color:"#fff"},onClick:()=>scrollTo("hero")},"Yun Chen"),
         ce("div",{className:"nav-links",style:{display:"flex",gap:28,alignItems:"center"}},
           [["Work","work"],["Experience","experience"]].map(([l,id])=>ce("span",{key:id,onClick:()=>scrollTo(id),className:"nav-link",style:{fontSize:13,color:"rgba(255,255,255,.6)",cursor:"pointer",fontWeight:400}},l)),
-          ce("a",{href:"https://www.linkedin.com/in/yun-chen-6b22a448/",target:"_blank",rel:"noreferrer",className:"nav-link",style:{fontSize:13,color:"#64ffda",textDecoration:"none",fontWeight:500}},"LinkedIn ↗"))
-      )
-    ),
+          ce("a",{href:"https://www.linkedin.com/in/yun-chen-6b22a448/",target:"_blank",rel:"noreferrer",className:"nav-link",style:{fontSize:13,color:"#64ffda",textDecoration:"none",fontWeight:500}},"LinkedIn ↗")))),
 
     ce("section",{id:"hero",className:"hero-section",style:{minHeight:"100vh",display:"flex",alignItems:"center",padding:"120px 40px 80px",position:"relative"}},
       ce("div",{style:{position:"absolute",top:"5%",left:"15%",width:500,height:500,borderRadius:"50%",background:"radial-gradient(circle, rgba(100,255,218,.08) 0%, transparent 70%)",animation:"float 8s ease-in-out infinite",pointerEvents:"none"}}),
@@ -179,19 +170,15 @@ function Site(){
       ce("div",{className:"hero-grid",style:{maxWidth:1200,width:"100%",margin:"0 auto",display:"grid",gridTemplateColumns:"1fr 1fr",gap:60,alignItems:"center",position:"relative",zIndex:1}},
         ce("div",null,
           ce(FadeIn,null,ce("div",{className:"hero-badge",style:{display:"inline-flex",alignItems:"center",gap:8,padding:"6px 16px",borderRadius:24,border:"1px solid rgba(100,255,218,.25)",background:"rgba(100,255,218,.05)",marginBottom:32}},
-            ce("span",{style:{color:"#64ffda",fontSize:14}},"✦"),
-            ce("span",{style:{fontSize:13,color:"#a8e6d9",fontWeight:500}},"AI Product Manager · PayPal · San Jose, CA"))),
+            ce("span",{style:{color:"#64ffda",fontSize:14}},"✦"),ce("span",{style:{fontSize:13,color:"#a8e6d9",fontWeight:500}},"AI Product Manager · PayPal · San Jose, CA"))),
           ce(FadeIn,{delay:0.1},ce("h1",{className:"hero-name",style:{fontSize:90,fontWeight:700,letterSpacing:"-.05em",lineHeight:1,margin:"0 0 24px",color:"#fff"}},"Yun Chen")),
           ce(FadeIn,{delay:0.2},ce("h2",{className:"hero-tagline",style:{fontSize:32,fontWeight:600,letterSpacing:"-.02em",lineHeight:1.2,margin:"0 0 18px",color:"rgba(255,255,255,.9)"}},"Delivering ",ce("span",{style:{background:"linear-gradient(135deg, #64ffda 0%, #40a9ff 100%)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}},"AI at scale"))),
           ce(FadeIn,{delay:0.3},ce("div",{className:"cta-buttons",style:{display:"flex",gap:12,alignItems:"center",marginTop:8}},
             ce("button",{onClick:()=>scrollTo("work"),style:{padding:"14px 32px",borderRadius:40,background:"linear-gradient(135deg, #64ffda 0%, #40a9ff 100%)",color:"#0a0e27",border:"none",fontSize:15,fontWeight:600,cursor:"pointer",transition:"transform .2s, box-shadow .2s"},onMouseEnter:e=>{e.target.style.transform="scale(1.04)";e.target.style.boxShadow="0 8px 30px rgba(100,255,218,.3)"},onMouseLeave:e=>{e.target.style.transform="scale(1)";e.target.style.boxShadow="none"}},"Explore my work ↓"),
             ce("a",{href:"https://www.linkedin.com/in/yun-chen-6b22a448/",target:"_blank",rel:"noreferrer",style:{padding:"14px 28px",borderRadius:40,background:"transparent",color:"#fff",border:"1.5px solid rgba(255,255,255,.2)",fontSize:15,fontWeight:500,textDecoration:"none",cursor:"pointer",display:"inline-flex",alignItems:"center",gap:6,transition:"border-color .2s"},onMouseEnter:e=>e.currentTarget.style.borderColor="#64ffda",onMouseLeave:e=>e.currentTarget.style.borderColor="rgba(255,255,255,.2)"},"LinkedIn"))),
           ce(FadeIn,{delay:0.4},ce("div",{className:"hero-stats",style:{display:"flex",gap:40,marginTop:64,flexWrap:"wrap"}},
-            [{v:"8",l:"AI Products"},{v:"$26M+",l:"Impact"},{v:"~50%",l:"Efficiency"},{v:"10+",l:"Years"}].map((m,i)=>ce("div",{key:i},ce("div",{className:"hero-stat-val",style:{fontSize:32,fontWeight:700,letterSpacing:"-.03em",color:"#fff"}},m.v),ce("div",{style:{fontSize:12,color:"rgba(255,255,255,.4)",marginTop:2}},m.l)))))
-        ),
-        ce("div",{className:"hero-right"})
-      )
-    ),
+            [{v:"9",l:"AI Products"},{v:"$26M+",l:"Impact"},{v:"~50%",l:"Efficiency"},{v:"10+",l:"Years"}].map((m,i)=>ce("div",{key:i},ce("div",{className:"hero-stat-val",style:{fontSize:32,fontWeight:700,letterSpacing:"-.03em",color:"#fff"}},m.v),ce("div",{style:{fontSize:12,color:"rgba(255,255,255,.4)",marginTop:2}},m.l)))))),
+        ce("div",{className:"hero-right"}))),
 
     ce("section",{id:"work",className:"work-section",style:{padding:"40px 40px 100px"}},
       ce("div",{style:{maxWidth:1100,margin:"0 auto"}},
@@ -200,35 +187,26 @@ function Site(){
           ce("h2",{className:"section-h2",style:{fontSize:44,fontWeight:700,letterSpacing:"-.03em",margin:"4px 0 8px",color:"#fff"}},"Case Studies"),
           ce("p",{style:{fontSize:17,color:"rgba(255,255,255,.5)",margin:0}},"AI products I built from concept to production"))),
         ce("div",{className:"work-grid",style:{display:"grid",gridTemplateColumns:"repeat(2, 1fr)",gap:20}},
-          products.map((p,i)=>ce(ProjectCard,{key:p.id,p,idx:i,onOpen:()=>setOpenDetail(i)}))))
-    ),
+          products.map((p,i)=>ce(ProjectCard,{key:p.id,p,idx:i,onOpen:()=>setOpenDetail(i)}))))),
 
     openDetail!==null&&ce(DetailModal,{product:products[openDetail],detail:productDetails[openDetail],onClose:()=>setOpenDetail(null)}),
 
     ce("section",{id:"experience",className:"experience-section",style:{background:"rgba(255,255,255,.02)",padding:"100px 40px",borderTop:"1px solid rgba(255,255,255,.05)",borderBottom:"1px solid rgba(255,255,255,.05)"}},
       ce("div",{style:{maxWidth:900,margin:"0 auto"}},
-        ce(FadeIn,null,
-          ce("span",{style:{fontSize:13,fontWeight:600,color:"#64ffda",letterSpacing:".04em"}},"CAREER"),
-          ce("h2",{className:"section-h2",style:{fontSize:44,fontWeight:700,letterSpacing:"-.03em",margin:"4px 0 56px",color:"#fff"}},"Experience")),
+        ce(FadeIn,null,ce("span",{style:{fontSize:13,fontWeight:600,color:"#64ffda",letterSpacing:".04em"}},"CAREER"),ce("h2",{className:"section-h2",style:{fontSize:44,fontWeight:700,letterSpacing:"-.03em",margin:"4px 0 56px",color:"#fff"}},"Experience")),
         jobs.map((j,i)=>ce(FadeIn,{key:i,delay:i*0.08},
           ce("div",{className:"exp-row",style:{display:"grid",gridTemplateColumns:"200px 1fr",gap:32,paddingBottom:40,marginBottom:40,borderBottom:i<jobs.length-1?"1px solid rgba(255,255,255,.06)":"none"}},
-            ce("div",{className:"exp-meta"},
-              ce("div",{style:{fontSize:13,color:"rgba(255,255,255,.5)",fontWeight:500}},j.date),
-              ce("div",{style:{fontSize:13,color:"rgba(255,255,255,.4)",marginTop:2}},j.loc)),
-            ce("div",null,
-              ce("h3",{className:"exp-title",style:{fontSize:20,fontWeight:600,margin:"0 0 2px",letterSpacing:"-.01em",color:"#fff"}},j.title),
+            ce("div",{className:"exp-meta"},ce("div",{style:{fontSize:13,color:"rgba(255,255,255,.5)",fontWeight:500}},j.date),ce("div",{style:{fontSize:13,color:"rgba(255,255,255,.4)",marginTop:2}},j.loc)),
+            ce("div",null,ce("h3",{className:"exp-title",style:{fontSize:20,fontWeight:600,margin:"0 0 2px",letterSpacing:"-.01em",color:"#fff"}},j.title),
               ce("div",{style:{fontSize:15,color:"rgba(255,255,255,.55)",marginBottom:14}},j.company+" · "+j.sub),
-              ce("div",{style:{display:"flex",gap:8,flexWrap:"wrap"}},j.highlights.map((h,hi)=>ce("span",{key:hi,style:{fontSize:12,fontWeight:500,padding:"4px 12px",borderRadius:20,background:"rgba(100,255,218,.08)",color:"#a8e6d9",border:"1px solid rgba(100,255,218,.15)"}},h))))
-          ))))
-    ),
+              ce("div",{style:{display:"flex",gap:8,flexWrap:"wrap"}},j.highlights.map((h,hi)=>ce("span",{key:hi,style:{fontSize:12,fontWeight:500,padding:"4px 12px",borderRadius:20,background:"rgba(100,255,218,.08)",color:"#a8e6d9",border:"1px solid rgba(100,255,218,.15)"}},h))))))))),
 
     ce("section",{className:"footer-section",style:{background:"rgba(0,0,0,.4)",padding:"80px 40px",textAlign:"center",borderTop:"1px solid rgba(255,255,255,.05)"}},
       ce(FadeIn,null,
         ce("h2",{className:"footer-h2",style:{fontSize:40,fontWeight:700,color:"#fff",letterSpacing:"-.03em",margin:"0 0 12px"}},"Let's connect"),
         ce("p",{style:{fontSize:17,color:"rgba(255,255,255,.5)",marginBottom:32}},"Open to AI product leadership roles and advisory opportunities"),
         ce("a",{href:"https://www.linkedin.com/in/yun-chen-6b22a448/",target:"_blank",rel:"noreferrer",style:{display:"inline-flex",alignItems:"center",gap:8,padding:"14px 32px",borderRadius:40,background:"linear-gradient(135deg, #64ffda 0%, #40a9ff 100%)",color:"#0a0e27",fontSize:15,fontWeight:600,textDecoration:"none",transition:"transform .2s"},onMouseEnter:e=>e.target.style.transform="scale(1.04)",onMouseLeave:e=>e.target.style.transform="scale(1)"},"LinkedIn ↗")),
-      ce("div",{style:{marginTop:48,paddingTop:24,borderTop:"1px solid rgba(255,255,255,.05)",fontSize:12,color:"rgba(255,255,255,.25)"}},"© 2025 Yun Chen. All rights reserved.")
-    )
+      ce("div",{style:{marginTop:48,paddingTop:24,borderTop:"1px solid rgba(255,255,255,.05)",fontSize:12,color:"rgba(255,255,255,.25)"}},"© 2025 Yun Chen. All rights reserved."))
   );
 }
 
