@@ -16,7 +16,11 @@ body{font-family:-apple-system,'SF Pro Display','Helvetica Neue',Helvetica,Arial
 ::selection{background:#64ffda;color:#0a0e27}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.showcase-desktop{display:flex!important}
+.showcase-mobile{display:none!important}
 @media(max-width:768px){
+.showcase-desktop{display:none!important}
+.showcase-mobile{display:block!important}
 .hero-grid{grid-template-columns:1fr!important;gap:0!important}
 .hero-right{display:none!important}
 .hero-name{font-size:56px!important}
@@ -31,21 +35,9 @@ body{font-family:-apple-system,'SF Pro Display','Helvetica Neue',Helvetica,Arial
 .nav-link{font-size:12px!important}
 .work-section,.experience-section,.footer-section{padding:60px 20px!important}
 .section-h2{font-size:30px!important}
-.work-grid{grid-template-columns:1fr!important}
-.product-card{padding:32px 24px!important;height:auto!important;min-height:280px!important}
-.product-title{font-size:22px!important}
-.product-desc{font-size:14px!important}
 .exp-row{grid-template-columns:1fr!important;gap:12px!important;padding-bottom:28px!important;margin-bottom:28px!important}
 .exp-meta{display:flex!important;gap:12px!important}
 .exp-title{font-size:17px!important}
-.modal-content{max-width:100%!important;border-radius:16px!important}
-.modal-header{padding:24px 24px 20px!important}
-.modal-title{font-size:22px!important}
-.modal-body{padding:20px 24px 24px!important}
-.modal-body-grid{grid-template-columns:1fr!important;gap:20px!important}
-.modal-metrics{gap:8px!important}
-.modal-metric{min-width:0!important;padding:12px 14px!important}
-.modal-metric-val{font-size:20px!important}
 .cta-buttons{flex-wrap:wrap!important;gap:10px!important}
 .cta-buttons button,.cta-buttons a{padding:12px 22px!important;font-size:14px!important}
 .footer-h2{font-size:30px!important}
@@ -56,12 +48,11 @@ body{font-family:-apple-system,'SF Pro Display','Helvetica Neue',Helvetica,Arial
 <div id="root"></div>
 <script type="text/babel">
 const{useState,useEffect,useRef}=React;
-const ce=React.createElement;
 
 function FadeIn({children,delay=0}){
   const ref=useRef(null);const[vis,setVis]=useState(false);
   useEffect(()=>{const el=ref.current;if(!el)return;const ob=new IntersectionObserver(([e])=>{if(e.isIntersecting){setVis(true);ob.disconnect();}},{threshold:0.12});ob.observe(el);return()=>ob.disconnect();},[]);
-  return ce("div",{ref,style:{opacity:vis?1:0,transform:vis?"translateY(0)":"translateY(40px)",transition:`opacity .7s ease ${delay}s, transform .7s ease ${delay}s`}},children);
+  return <div ref={ref} style={{opacity:vis?1:0,transform:vis?"translateY(0)":"translateY(40px)",transition:`opacity .7s ease ${delay}s, transform .7s ease ${delay}s`}}>{children}</div>;
 }
 
 const products=[
@@ -71,21 +62,21 @@ const products=[
   {id:"wiq",title:"WebHunter IQ",subtitle:"Sales · GenAI",desc:"AI merchant intelligence platform powering 400+ account managers with grounded, cited research before every outbound call.",stat:"$10M+",statLabel:"Revenue enabled",gradient:"linear-gradient(135deg,#1a1a1a 0%,#2d2d1a 50%,#3d3a0a 100%)",accent:"#ffd54f"},
   {id:"tnc",title:"Terms & Conditions Engine",subtitle:"Legal · Compliance",desc:"Automated web-crawl pipeline monitoring partner T&Cs across 16 brands, with AI-powered change summaries in near-real-time.",stat:"$15M",statLabel:"Risk prevented",gradient:"linear-gradient(135deg,#0a1a1a 0%,#0d2b2b 50%,#0f3d3d 100%)",accent:"#64ffda"},
   {id:"ppc",title:"Presentment Parity",subtitle:"Commerce · Vision AI",desc:"Agentic web crawler + Vision AI that validates merchant checkout pages — protecting $10B TPV and saving $2M in vendor costs.",stat:"$10B",statLabel:"TPV protected",gradient:"linear-gradient(135deg,#1a0a0a 0%,#2b1515 50%,#3d1f1f 100%)",accent:"#ff8a80"},
-  {id:"ngrp",title:"Strategy Transformation",subtitle:"Credit · Platform Migration",desc:"Led migration of BNPL logic from fragmented batch systems to the Next-Generation Risk Platform — cutting strategy TTM from 2 weeks to 3 days with near-instantaneous deployment.",stat:"2wk → 3d",statLabel:"Strategy TTM",gradient:"linear-gradient(135deg,#0a1a2a 0%,#102840 50%,#1a3a5c 100%)",accent:"#42a5f5"},
-  {id:"evd",title:"Executive Visibility Dashboard",subtitle:"Tooling · Claude Artifacts",desc:"AI-generated interactive dashboard replacing manual data stitching for VP+ executive readouts — now the primary source for weekly status reports on the department's #1 priority program.",stat:"VP+",statLabel:"Weekly readouts",gradient:"linear-gradient(135deg,#1a1a2e 0%,#2e1a3a 50%,#4a1a5c 100%)",accent:"#ce93d8"},
-  {id:"onb",title:"Onboarding Flow Modernization",subtitle:"Platform · Orchestration",desc:"0-to-1 transformation of global consumer and merchant onboarding — replacing fragmented parallel silos with an intelligent risk-then-compliance orchestration model that slashed latency and boosted signup conversion.",stat:"30% →",statLabel:"Signup conversion",gradient:"linear-gradient(135deg,#0a1a0a 0%,#1a2e1a 50%,#2a4a2a 100%)",accent:"#81c784"},
+  {id:"ngrp",title:"Strategy Transformation",subtitle:"Credit · Platform Migration",desc:"Led migration of BNPL logic from fragmented batch systems to the Next-Generation Risk Platform — cutting strategy TTM from 2 weeks to 3 days.",stat:"2wk → 3d",statLabel:"Strategy TTM",gradient:"linear-gradient(135deg,#0a1a2a 0%,#102840 50%,#1a3a5c 100%)",accent:"#42a5f5"},
+  {id:"evd",title:"Executive Visibility Dashboard",subtitle:"Tooling · Claude Artifacts",desc:"AI-generated interactive dashboard replacing manual data stitching for VP+ executive readouts — now the primary source for weekly status reports.",stat:"VP+",statLabel:"Weekly readouts",gradient:"linear-gradient(135deg,#1a1a2e 0%,#2e1a3a 50%,#4a1a5c 100%)",accent:"#ce93d8"},
+  {id:"onb",title:"Onboarding Flow Modernization",subtitle:"Platform · Orchestration",desc:"0-to-1 transformation of global consumer and merchant onboarding — replacing fragmented parallel silos with intelligent risk-then-compliance orchestration.",stat:"30% →",statLabel:"Signup conversion",gradient:"linear-gradient(135deg,#0a1a0a 0%,#1a2e1a 50%,#2a4a2a 100%)",accent:"#81c784"},
 ];
 
-const productDetails=[
-  {problem:"Strategy teams face steep learning curves with decision engine rule syntax. Rule authoring takes weeks and the platform team is stretched thin between feature dev and client support.",approach:["AI-powered rule generation from PRDs, SQL, or Python code","Automated feature & model catalog discovery via API connectors","End-to-end decision platform integration via orchestration APIs","Built-in syntax compilation checks and validation loops"],metrics:[{val:"Days → Min",label:"Authoring time"},{val:"~10K",label:"Rules applicable"},{val:"0 → 1",label:"New capability"}]},
-  {problem:"Anomaly response is highly manual, fragmented, and lagged. Novel attacks persist for months, causing significant losses before teams even respond.",approach:["AI agents replace 24/7 human monitoring with unified alerting","Automated ranked root-cause analysis with supporting SQL","Auto-generated mitigation rules deployed daily to production decision engines","Governance layer prevents alert overload and rule explosion","Post-monitoring to retire surgical solutions, keeping the decisioning ecosystem clean and healthy"],metrics:[{val:"4d → 2h",label:"Detection time"},{val:"10d → 2d",label:"Response time"},{val:"150+",label:"Use cases covered"}]},
-  {problem:"Manual reauthoring of tens of thousands of legacy business rules would take years. Traditional syntax parsers fail on complex nested logic and non-standard rule patterns requiring semantic understanding.",approach:["Hybrid AST parsing + LLM-powered semantic translation","Business object model extraction to ground output and prevent hallucination","Iterative self-correction loop with automated grammar validation","Human-in-the-loop: tool accelerates, authors validate"],metrics:[{val:"Years → Months",label:"Migration timeline"},{val:"~10K",label:"Rules applicable"},{val:"3 BUs",label:"Accelerated"}]},
-  {problem:"Discovery prep takes 30-60 min per merchant. AMs stitch research from fragmented tools with inconsistent quality. The 16-question form can't adapt to merchant-specific needs.",approach:["Built 0-to-1 with first-gen LLM for merchant summarization, then iteratively upgraded as models evolved — currently powered by Claude with agentic tool-use capabilities","Free-form conversational chat replaces rigid 16-question form","5-tool grounded data layer with inline citations","Streaming answers with explicit abstention when unsupported"],metrics:[{val:"30% ↑",label:"Leads quality"},{val:"$10M+",label:"Revenue enabled"},{val:"400+",label:"AMs globally"}]},
-  {problem:"PayPal must monitor Terms and Conditions across 15-20 paid media vendors. Third parties unilaterally change terms, creating legal exposure if modifications go unnoticed.",approach:["Automated monthly web crawl scheduler across all vendor URLs","Side-by-side diff with match ratios and AI-generated summaries","Flexible brand/URL sourcing with Wayback Machine support","PDF audit trail reports with email distribution"],metrics:[{val:"$15M",label:"Risk prevented"},{val:"16",label:"Brands monitored"},{val:"100+",label:"T&C pages tracked"}]},
-  {problem:"PayPal loses volume when payment options are missing at checkout — gaps go undetected, causing silent revenue leakage. BNPL rollout is delayed by manual validation.",approach:["Agentic web crawling of merchant checkout pages","Vision AI detects PayPal/BNPL option presence and correctness","Scoring engine compares against expected configuration","Alert system surfaces gaps to merchant teams for remediation"],metrics:[{val:"$10B",label:"TPV protected"},{val:"$2M",label:"Vendor cost saved"},{val:"80%",label:"Efficiency gain"}]},
-  {problem:"Legacy BNPL strategies were fragmented across batch systems, causing high latency in credit decisioning and 2-week delays for strategy updates.",approach:["Led migration of BNPL logic to the Next-Generation Risk Platform (NGRP)","Improved data ingestion quality and real-time feature availability","Enabled near-instantaneous strategy deployment replacing batch processing","Achieved more precise risk scoring through real-time decisioning"],metrics:[{val:"2wk → 3d",label:"Strategy TTM"},{val:"0 → 1",label:"Platform migration"},{val:"Real-time",label:"Decisioning"}]},
-  {problem:"Tracking adoption of a new OS across global Risk infrastructure was a manual, error-prone task involving multiple data sources that required weekly updates for VP-level review.",approach:["Leveraged Claude Artifacts to build a dynamic, visual dashboard from raw data","Input raw adoption metrics and program milestones into AI-generated interface","Created interactive visualizations and progress tracking for executive consumption","Became the primary source for weekly VP+ status reports"],metrics:[{val:"VP+",label:"Weekly readouts"},{val:"Real-time",label:"Transparency"},{val:"0 → 1",label:"Dashboard tooling"}]},
-  {problem:"Identity, fraud, credit, and compliance operated in parallel silos during onboarding — causing redundant verification loops, high vendor costs, and exploitable risk blind spots. Only 30% of customers successfully completed the signup process.",approach:["Built a unified verification ingestion layer — standardized single-entry service for email, phone, and address across all onboarding entry points","Replaced blind parallel execution with intelligent sequential orchestration (risk-then-compliance) — fast-path risk filters weed out bad actors early, preventing expensive downstream compliance/KYC lookups","Designed cross-domain decision sharing between Identity, Fraud, Compliance, and Credit engines for single-source-of-truth decisioning","Partnered across Growth/GTM, Legal/Compliance, and Risk Engineering to align regulatory obligations with funnel conversion goals"],metrics:[{val:"30% →",label:"Signup conversion"},{val:"Lower",label:"Vendor API costs"},{val:"Closed",label:"Cross-domain gaps"}]},
+const details=[
+  {problem:"Strategy teams face steep learning curves with decision engine rule syntax. Rule authoring takes weeks and the platform team is stretched thin.",approach:["AI-powered rule generation from PRDs, SQL, or Python code","Automated feature & model catalog discovery via API connectors","End-to-end decision platform integration via orchestration APIs","Built-in syntax compilation checks and validation loops"],metrics:[{val:"Days → Min",label:"Authoring time"},{val:"~10K",label:"Rules applicable"},{val:"0 → 1",label:"New capability"}]},
+  {problem:"Anomaly response is highly manual, fragmented, and lagged. Novel attacks persist for months, causing significant losses.",approach:["AI agents replace 24/7 human monitoring with unified alerting","Automated ranked root-cause analysis with supporting SQL","Auto-generated mitigation rules deployed daily to production","Governance layer prevents alert overload and rule explosion","Post-monitoring to retire surgical solutions, keeping decisioning clean"],metrics:[{val:"4d → 2h",label:"Detection time"},{val:"10d → 2d",label:"Response time"},{val:"150+",label:"Use cases"}]},
+  {problem:"Manual reauthoring of tens of thousands of legacy business rules would take years. Traditional parsers fail on complex nested logic.",approach:["Hybrid AST parsing + LLM-powered semantic translation","Business object model extraction to prevent hallucination","Iterative self-correction loop with automated grammar validation","Human-in-the-loop: tool accelerates, authors validate"],metrics:[{val:"Years → Months",label:"Migration"},{val:"~10K",label:"Rules"},{val:"3 BUs",label:"Accelerated"}]},
+  {problem:"Discovery prep takes 30-60 min per merchant. AMs stitch research from fragmented tools with inconsistent quality.",approach:["Built 0-to-1 with first-gen LLM, iteratively upgraded — now powered by Claude with agentic tool-use","Free-form conversational chat replaces rigid 16-question form","5-tool grounded data layer with inline citations","Streaming answers with explicit abstention when unsupported"],metrics:[{val:"30% ↑",label:"Leads quality"},{val:"$10M+",label:"Revenue"},{val:"400+",label:"AMs globally"}]},
+  {problem:"Must monitor Terms and Conditions across 15-20 paid media vendors. Third parties unilaterally change terms, creating legal exposure.",approach:["Automated monthly web crawl scheduler across all vendor URLs","Side-by-side diff with match ratios and AI-generated summaries","Flexible brand/URL sourcing with Wayback Machine support","PDF audit trail reports with email distribution"],metrics:[{val:"$15M",label:"Risk prevented"},{val:"16",label:"Brands"},{val:"100+",label:"Pages tracked"}]},
+  {problem:"Payment options missing at checkout go undetected, causing silent revenue leakage. BNPL rollout delayed by manual validation.",approach:["Agentic web crawling of merchant checkout pages","Vision AI detects PayPal/BNPL option presence and correctness","Scoring engine compares against expected configuration","Alert system surfaces gaps for remediation"],metrics:[{val:"$10B",label:"TPV protected"},{val:"$2M",label:"Cost saved"},{val:"80%",label:"Efficiency"}]},
+  {problem:"Legacy BNPL strategies were fragmented across batch systems, causing high latency and 2-week delays for strategy updates.",approach:["Led migration of BNPL logic to the Next-Generation Risk Platform","Improved data ingestion quality and real-time feature availability","Enabled near-instantaneous strategy deployment replacing batch processing","Achieved more precise risk scoring through real-time decisioning"],metrics:[{val:"2wk → 3d",label:"Strategy TTM"},{val:"0 → 1",label:"Migration"},{val:"Real-time",label:"Decisioning"}]},
+  {problem:"Tracking adoption of a new OS across global Risk infrastructure was manual, error-prone, requiring weekly updates for VP-level review.",approach:["Leveraged Claude Artifacts to build a dynamic visual dashboard","Input raw adoption metrics and program milestones into AI-generated interface","Created interactive visualizations and progress tracking","Became the primary source for weekly VP+ status reports"],metrics:[{val:"VP+",label:"Readouts"},{val:"Real-time",label:"Transparency"},{val:"0 → 1",label:"Tooling"}]},
+  {problem:"Identity, fraud, credit, and compliance operated in parallel silos during onboarding — causing redundant verification loops and risk blind spots. Only 30% of customers completed signup.",approach:["Built unified verification ingestion layer for email, phone, and address across all entry points","Replaced blind parallel execution with intelligent sequential orchestration (risk-then-compliance)","Designed cross-domain decision sharing between Identity, Fraud, Compliance, and Credit engines","Partnered across Growth/GTM, Legal/Compliance, and Risk Engineering to align goals"],metrics:[{val:"30% →",label:"Conversion"},{val:"Lower",label:"Vendor costs"},{val:"Closed",label:"Risk gaps"}]},
 ];
 
 const jobs=[
@@ -95,122 +86,224 @@ const jobs=[
   {title:"Business Consultant",company:"UnionPay Advisors",sub:"Financial Analytics",loc:"Shanghai",date:"2015 — 2016",highlights:["50M account models","3M card portfolios"]},
 ];
 
-function DetailModal({product,detail,onClose}){
-  useEffect(()=>{document.body.style.overflow="hidden";return()=>{document.body.style.overflow=""};},[]);
-  return ce("div",{onClick:onClose,style:{position:"fixed",inset:0,zIndex:1000,background:"rgba(0,0,0,.5)",backdropFilter:"blur(8px)",display:"flex",alignItems:"center",justifyContent:"center",padding:24}},
-    ce("div",{onClick:e=>e.stopPropagation(),className:"modal-content",style:{background:"#fff",borderRadius:24,maxWidth:800,width:"100%",maxHeight:"85vh",overflow:"auto",position:"relative",animation:"fadeUp .3s ease"}},
-      ce("div",{className:"modal-header",style:{background:product.gradient,borderRadius:"24px 24px 0 0",padding:"36px 40px 28px",position:"relative",overflow:"hidden"}},
-        ce("div",{style:{position:"absolute",top:-40,right:-40,width:160,height:160,borderRadius:"50%",background:"radial-gradient(circle, "+product.accent+"20 0%, transparent 70%)"}}),
-        ce("button",{onClick:onClose,style:{position:"absolute",top:16,right:16,width:32,height:32,borderRadius:"50%",background:"rgba(255,255,255,.15)",border:"none",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}},
-          ce("svg",{width:14,height:14,viewBox:"0 0 14 14",fill:"none"},ce("path",{d:"M3 3l8 8M11 3l-8 8",stroke:"#fff",strokeWidth:1.5,strokeLinecap:"round"}))),
-        ce("div",{style:{fontSize:11,fontWeight:500,color:product.accent,letterSpacing:".06em",textTransform:"uppercase",marginBottom:8,opacity:.9}},product.subtitle),
-        ce("h2",{className:"modal-title",style:{fontSize:28,fontWeight:700,color:"#fff",margin:0,letterSpacing:"-.02em"}},product.title),
-        ce("p",{style:{fontSize:15,color:"rgba(255,255,255,.6)",marginTop:8,lineHeight:1.5,maxWidth:500}},product.desc)),
-      ce("div",{className:"modal-body",style:{padding:"32px 40px 40px"}},
-        ce("div",{className:"modal-metrics",style:{display:"flex",gap:16,marginBottom:32,flexWrap:"wrap"}},
-          detail.metrics.map((m,i)=>ce("div",{key:i,className:"modal-metric",style:{flex:1,minWidth:140,background:"#f5f5f7",borderRadius:14,padding:"18px 20px"}},
-            ce("div",{className:"modal-metric-val",style:{fontSize:28,fontWeight:700,color:"#1d1d1f",letterSpacing:"-.02em"}},m.val),
-            ce("div",{style:{fontSize:12,color:"#86868b",marginTop:2}},m.label)))),
-        ce("div",{className:"modal-body-grid",style:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:28}},
-          ce("div",null,
-            ce("div",{style:{fontSize:12,fontWeight:600,letterSpacing:".02em",color:"#ff3b30",marginBottom:10,display:"flex",alignItems:"center",gap:6}},
-              ce("svg",{width:16,height:16,viewBox:"0 0 16 16",fill:"none"},ce("circle",{cx:8,cy:8,r:6.5,stroke:"#ff3b30",strokeWidth:1.2}),ce("path",{d:"M8 5v3.5M8 10.5v.5",stroke:"#ff3b30",strokeWidth:1.3,strokeLinecap:"round"})),"Why it matters"),
-            ce("p",{style:{fontSize:14,color:"#1d1d1f",lineHeight:1.7}},detail.problem)),
-          ce("div",null,
-            ce("div",{style:{fontSize:12,fontWeight:600,letterSpacing:".02em",color:"#0071e3",marginBottom:10,display:"flex",alignItems:"center",gap:6}},
-              ce("svg",{width:16,height:16,viewBox:"0 0 16 16",fill:"none"},ce("path",{d:"M3 8h10m0 0l-3-3m3 3l-3 3",stroke:"#0071e3",strokeWidth:1.3,strokeLinecap:"round",strokeLinejoin:"round"})),"How I solved it"),
-            detail.approach.map((a,i)=>ce("div",{key:i,style:{display:"flex",gap:10,marginBottom:10,alignItems:"flex-start"}},
-              ce("div",{style:{width:22,height:22,borderRadius:"50%",background:"#0071e3",color:"#fff",fontSize:11,fontWeight:600,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,marginTop:1}},i+1),
-              ce("div",{style:{fontSize:14,color:"#1d1d1f",lineHeight:1.6}},a))))
-        )
-      )
-    )
-  );
+function StackedCard({pr,offset,onClick}){
+  const absOff=Math.abs(offset);
+  if(absOff>2)return null;
+  return <div onClick={onClick} style={{
+    position:"absolute",width:360,height:380,background:pr.gradient,borderRadius:20,padding:"32px 28px",
+    cursor:offset===0?"default":"pointer",transition:"all .5s cubic-bezier(.25,.1,.25,1)",
+    transform:offset===0?"translateX(0) scale(1) rotateY(0deg)":offset<0?`translateX(${offset*50-20}px) scale(${0.88-absOff*0.04}) rotateY(8deg)`:`translateX(${offset*50+20}px) scale(${0.88-absOff*0.04}) rotateY(-8deg)`,
+    opacity:offset===0?1:absOff===1?0.6:0.3,zIndex:10-absOff,
+    filter:offset===0?"none":`brightness(${0.5-absOff*0.1})`,
+    boxShadow:offset===0?`0 20px 60px rgba(0,0,0,.5), 0 0 40px ${pr.accent}15`:"0 4px 20px rgba(0,0,0,.3)",
+    overflow:"hidden",display:"flex",flexDirection:"column",pointerEvents:absOff>1?"none":"auto"}}>
+    <div style={{position:"absolute",top:-40,right:-40,width:140,height:140,borderRadius:"50%",background:`radial-gradient(circle, ${pr.accent}20 0%, transparent 70%)`}}/>
+    <div style={{position:"relative",zIndex:1,flex:1,display:"flex",flexDirection:"column"}}>
+      <div style={{fontSize:11,fontWeight:500,color:pr.accent,letterSpacing:".06em",textTransform:"uppercase",marginBottom:10,opacity:.9}}>{pr.subtitle}</div>
+      <h3 style={{fontSize:22,fontWeight:700,color:"#fff",margin:"0 0 10px",letterSpacing:"-.02em",lineHeight:1.2}}>{pr.title}</h3>
+      <p style={{fontSize:13,color:"rgba(255,255,255,.6)",lineHeight:1.5,flex:1}}>{pr.desc}</p>
+      <div style={{display:"inline-flex",alignItems:"baseline",gap:8,background:"rgba(255,255,255,.08)",borderRadius:10,padding:"10px 14px",border:"1px solid rgba(255,255,255,.1)",alignSelf:"flex-start",marginTop:12}}>
+        <span style={{fontSize:20,fontWeight:700,color:pr.accent}}>{pr.stat}</span>
+        <span style={{fontSize:11,color:"rgba(255,255,255,.5)"}}>{pr.statLabel}</span>
+      </div>
+    </div>
+  </div>;
 }
 
-function ProjectCard({p,idx,onOpen}){
-  const[hovered,setHovered]=useState(false);
-  return ce(FadeIn,{delay:idx*0.1},
-    ce("div",{onMouseEnter:()=>setHovered(true),onMouseLeave:()=>setHovered(false),onClick:onOpen,className:"product-card",
-      style:{background:p.gradient,borderRadius:24,padding:"48px 44px",cursor:"pointer",
-        transition:"transform .4s cubic-bezier(.25,.1,.25,1), box-shadow .4s ease",
-        transform:hovered?"translateY(-6px) scale(1.01)":"none",
-        boxShadow:hovered?"0 20px 60px rgba(0,0,0,.3), 0 0 40px "+p.accent+"15":"0 4px 20px rgba(0,0,0,.15)",
-        position:"relative",overflow:"hidden",height:340,display:"flex",flexDirection:"column"}},
-      ce("div",{style:{position:"absolute",top:-60,right:-60,width:200,height:200,borderRadius:"50%",background:"radial-gradient(circle, "+p.accent+"15 0%, transparent 70%)",transition:"opacity .4s",opacity:hovered?1:0.3}}),
-      ce("div",{style:{position:"relative",zIndex:1,display:"flex",flexDirection:"column",flex:1}},
-        ce("div",{style:{fontSize:12,fontWeight:500,color:p.accent,letterSpacing:".06em",textTransform:"uppercase",marginBottom:12,opacity:.9}},p.subtitle),
-        ce("h3",{className:"product-title",style:{fontSize:28,fontWeight:700,color:"#fff",margin:"0 0 12px",letterSpacing:"-.02em",lineHeight:1.2}},p.title),
-        ce("p",{className:"product-desc",style:{fontSize:15,color:"rgba(255,255,255,.65)",lineHeight:1.6,maxWidth:420,marginBottom:24,flex:1}},p.desc),
-        ce("div",{style:{display:"inline-flex",alignItems:"baseline",gap:10,background:"rgba(255,255,255,.08)",borderRadius:12,padding:"12px 18px",border:"1px solid rgba(255,255,255,.1)",alignSelf:"flex-start"}},
-          ce("span",{style:{fontSize:24,fontWeight:700,color:p.accent}},p.stat),
-          ce("span",{style:{fontSize:12,color:"rgba(255,255,255,.5)"}},p.statLabel))),
-      ce("div",{style:{position:"absolute",bottom:28,right:28,width:40,height:40,borderRadius:"50%",background:hovered?"rgba(255,255,255,.18)":"rgba(255,255,255,.08)",display:"flex",alignItems:"center",justifyContent:"center",transition:"all .3s",transform:hovered?"translate(0,0)":"translate(4px,4px)",opacity:hovered?1:0.6,pointerEvents:"none"}},
-        ce("svg",{width:16,height:16,viewBox:"0 0 16 16",fill:"none"},ce("path",{d:"M3 13L13 3M13 3H5M13 3v8",stroke:"#fff",strokeWidth:1.5,strokeLinecap:"round",strokeLinejoin:"round"})))
-    )
-  );
+function MobileCard({pr,offset,onClick}){
+  const absOff=Math.abs(offset);
+  if(absOff>2)return null;
+  return <div onClick={onClick} style={{
+    position:"absolute",width:"85%",maxWidth:320,height:300,background:pr.gradient,borderRadius:16,padding:"24px 20px",
+    cursor:offset===0?"default":"pointer",transition:"all .5s cubic-bezier(.25,.1,.25,1)",
+    transform:offset===0?"translateX(0) scale(1) rotateY(0deg)":offset<0?`translateX(${offset*40-16}px) scale(${0.88-absOff*0.04}) rotateY(6deg)`:`translateX(${offset*40+16}px) scale(${0.88-absOff*0.04}) rotateY(-6deg)`,
+    opacity:offset===0?1:absOff===1?0.5:0.2,zIndex:10-absOff,
+    filter:offset===0?"none":`brightness(${0.45-absOff*0.1})`,
+    boxShadow:offset===0?`0 16px 48px rgba(0,0,0,.5), 0 0 30px ${pr.accent}15`:"0 4px 16px rgba(0,0,0,.3)",
+    overflow:"hidden",display:"flex",flexDirection:"column",pointerEvents:absOff>1?"none":"auto"}}>
+    <div style={{position:"absolute",top:-30,right:-30,width:120,height:120,borderRadius:"50%",background:`radial-gradient(circle, ${pr.accent}20 0%, transparent 70%)`}}/>
+    <div style={{position:"relative",zIndex:1,flex:1,display:"flex",flexDirection:"column"}}>
+      <div style={{fontSize:10,fontWeight:500,color:pr.accent,letterSpacing:".06em",textTransform:"uppercase",marginBottom:8}}>{pr.subtitle}</div>
+      <h3 style={{fontSize:18,fontWeight:700,color:"#fff",margin:"0 0 8px",letterSpacing:"-.02em",lineHeight:1.2}}>{pr.title}</h3>
+      <p style={{fontSize:12,color:"rgba(255,255,255,.6)",lineHeight:1.5,flex:1}}>{pr.desc}</p>
+      <div style={{display:"inline-flex",alignItems:"baseline",gap:6,background:"rgba(255,255,255,.08)",borderRadius:8,padding:"8px 12px",border:"1px solid rgba(255,255,255,.1)",alignSelf:"flex-start",marginTop:8}}>
+        <span style={{fontSize:16,fontWeight:700,color:pr.accent}}>{pr.stat}</span>
+        <span style={{fontSize:10,color:"rgba(255,255,255,.5)"}}>{pr.statLabel}</span>
+      </div>
+    </div>
+  </div>;
+}
+
+function NavDots({active,total,onSelect,onPrev,onNext}){
+  return <div style={{display:"flex",justifyContent:"center",alignItems:"center",gap:10}}>
+    <button onClick={onPrev} disabled={active===0} style={{width:32,height:32,borderRadius:"50%",border:"1px solid rgba(255,255,255,.15)",background:active===0?"transparent":"rgba(255,255,255,.06)",cursor:active===0?"default":"pointer",display:"flex",alignItems:"center",justifyContent:"center",opacity:active===0?0.3:1,transition:"all .2s"}}>
+      <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+    </button>
+    <div style={{display:"flex",gap:5}}>
+      {Array.from({length:total}).map((_,i)=><div key={i} onClick={()=>onSelect(i)} style={{width:i===active?20:6,height:6,borderRadius:3,background:i===active?"#64ffda":"rgba(255,255,255,.2)",cursor:"pointer",transition:"all .3s"}}/>)}
+    </div>
+    <button onClick={onNext} disabled={active===total-1} style={{width:32,height:32,borderRadius:"50%",border:"1px solid rgba(255,255,255,.15)",background:active===total-1?"transparent":"rgba(255,255,255,.06)",cursor:active===total-1?"default":"pointer",display:"flex",alignItems:"center",justifyContent:"center",opacity:active===total-1?0.3:1,transition:"all .2s"}}>
+      <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+    </button>
+  </div>;
+}
+
+function DetailPanel({p,d}){
+  return <div key={p.id} style={{animation:"fadeUp .4s ease"}}>
+    <div style={{fontSize:11,fontWeight:500,color:p.accent,letterSpacing:".06em",textTransform:"uppercase",marginBottom:8}}>{p.subtitle}</div>
+    <h3 style={{fontSize:28,fontWeight:700,color:"#fff",margin:"0 0 20px",letterSpacing:"-.02em"}}>{p.title}</h3>
+    <div style={{display:"flex",gap:12,marginBottom:24,flexWrap:"wrap"}}>
+      {d.metrics.map((m,i)=><div key={i} style={{background:"rgba(255,255,255,.04)",border:"1px solid rgba(255,255,255,.08)",borderRadius:12,padding:"14px 18px",flex:1,minWidth:120}}>
+        <div style={{fontSize:22,fontWeight:700,color:"#fff",letterSpacing:"-.02em"}}>{m.val}</div>
+        <div style={{fontSize:11,color:"rgba(255,255,255,.45)",marginTop:2}}>{m.label}</div>
+      </div>)}
+    </div>
+    <div style={{marginBottom:20}}>
+      <div style={{fontSize:12,fontWeight:600,color:"#ff6b6b",marginBottom:8,display:"flex",alignItems:"center",gap:6}}>
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="#ff6b6b" strokeWidth="1.2"/><path d="M8 5v3.5M8 10.5v.5" stroke="#ff6b6b" strokeWidth="1.3" strokeLinecap="round"/></svg>
+        Why it matters</div>
+      <p style={{fontSize:14,color:"rgba(255,255,255,.7)",lineHeight:1.7,margin:0}}>{d.problem}</p>
+    </div>
+    <div>
+      <div style={{fontSize:12,fontWeight:600,color:"#64ffda",marginBottom:8,display:"flex",alignItems:"center",gap:6}}>
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0l-3-3m3 3l-3 3" stroke="#64ffda" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/></svg>
+        How I solved it</div>
+      {d.approach.map((a,i)=><div key={i} style={{display:"flex",gap:10,marginBottom:10,alignItems:"flex-start"}}>
+        <div style={{width:20,height:20,borderRadius:"50%",background:"#64ffda",color:"#0a0e27",fontSize:10,fontWeight:700,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,marginTop:2}}>{i+1}</div>
+        <span style={{fontSize:13,color:"rgba(255,255,255,.65)",lineHeight:1.6}}>{a}</span>
+      </div>)}
+    </div>
+  </div>;
+}
+
+function MobileDetail({p,d}){
+  return <div style={{marginBottom:16}}>
+    <div style={{display:"flex",gap:8,marginBottom:16,flexWrap:"wrap"}}>
+      {d.metrics.map((m,i)=><div key={i} style={{background:"rgba(255,255,255,.04)",border:"1px solid rgba(255,255,255,.08)",borderRadius:10,padding:"10px 14px",flex:1,minWidth:80}}>
+        <div style={{fontSize:18,fontWeight:700,color:"#fff"}}>{m.val}</div>
+        <div style={{fontSize:10,color:"rgba(255,255,255,.4)"}}>{m.label}</div>
+      </div>)}
+    </div>
+    <div style={{fontSize:12,fontWeight:600,color:"#ff6b6b",marginBottom:6}}>Why it matters</div>
+    <p style={{fontSize:13,color:"rgba(255,255,255,.65)",lineHeight:1.6,marginBottom:14}}>{d.problem}</p>
+    <div style={{fontSize:12,fontWeight:600,color:"#64ffda",marginBottom:6}}>How I solved it</div>
+    {d.approach.map((a,i)=><div key={i} style={{display:"flex",gap:8,marginBottom:8}}>
+      <div style={{width:18,height:18,borderRadius:"50%",background:"#64ffda",color:"#0a0e27",fontSize:9,fontWeight:700,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,marginTop:2}}>{i+1}</div>
+      <span style={{fontSize:12,color:"rgba(255,255,255,.6)",lineHeight:1.5}}>{a}</span>
+    </div>)}
+  </div>;
+}
+
+function ProductShowcase(){
+  const[active,setActive]=useState(0);
+  const touchX=useRef(0);
+  const p=products[active],d=details[active];
+  const next=()=>setActive(i=>Math.min(i+1,products.length-1));
+  const prev=()=>setActive(i=>Math.max(i-1,0));
+  const onTS=e=>{touchX.current=e.changedTouches[0].screenX};
+  const onTE=e=>{const diff=touchX.current-e.changedTouches[0].screenX;if(diff>50)next();if(diff<-50)prev();};
+
+  return <div>
+    {/* Desktop */}
+    <div className="showcase-desktop" style={{display:"flex",gap:32,minHeight:480}}>
+      <div style={{width:420,flexShrink:0,position:"relative"}} onTouchStart={onTS} onTouchEnd={onTE}>
+        <div style={{position:"relative",height:420,display:"flex",alignItems:"center",justifyContent:"center"}}>
+          {products.map((pr,i)=><StackedCard key={pr.id} pr={pr} offset={i-active} onClick={()=>setActive(i)}/>)}
+        </div>
+        <NavDots active={active} total={products.length} onSelect={setActive} onPrev={prev} onNext={next}/>
+        <div style={{textAlign:"center",fontSize:11,color:"rgba(255,255,255,.3)",marginTop:6}}>{active+1} / {products.length}</div>
+      </div>
+      <div style={{flex:1,paddingTop:8}}><DetailPanel p={p} d={d}/></div>
+    </div>
+    {/* Mobile */}
+    <div className="showcase-mobile" onTouchStart={onTS} onTouchEnd={onTE}>
+      <div style={{position:"relative",height:340,display:"flex",alignItems:"center",justifyContent:"center",marginBottom:20}}>
+        {products.map((pr,i)=><MobileCard key={pr.id} pr={pr} offset={i-active} onClick={()=>setActive(i)}/>)}
+      </div>
+      <MobileDetail p={p} d={d}/>
+      <NavDots active={active} total={products.length} onSelect={setActive} onPrev={prev} onNext={next}/>
+      <div style={{textAlign:"center",fontSize:11,color:"rgba(255,255,255,.3)",marginTop:6}}>Swipe or tap arrows · {active+1} / {products.length}</div>
+    </div>
+  </div>;
 }
 
 function Site(){
-  const[scrollY,setScrollY]=useState(0);const[openDetail,setOpenDetail]=useState(null);
+  const[scrollY,setScrollY]=useState(0);
   useEffect(()=>{const fn=()=>setScrollY(window.scrollY);window.addEventListener("scroll",fn,{passive:true});return()=>window.removeEventListener("scroll",fn);},[]);
   const scrollTo=id=>document.getElementById(id)?.scrollIntoView({behavior:"smooth"});
 
-  return ce("div",{style:{fontFamily:"-apple-system,'SF Pro Display','Helvetica Neue',Helvetica,Arial,sans-serif",background:"#0a0e27",color:"#e8e8e8",overflowX:"hidden"}},
-    ce("nav",{className:"nav-wrap",style:{position:"fixed",top:0,left:0,right:0,zIndex:100,background:scrollY>50?"rgba(10,14,39,.88)":"transparent",backdropFilter:scrollY>50?"saturate(180%) blur(20px)":"none",borderBottom:scrollY>50?"1px solid rgba(255,255,255,.06)":"none",transition:"all .3s",padding:"0 40px"}},
-      ce("div",{style:{maxWidth:1200,margin:"0 auto",display:"flex",justifyContent:"space-between",alignItems:"center",height:56}},
-        ce("span",{style:{fontSize:16,fontWeight:700,letterSpacing:"-.02em",cursor:"pointer",color:"#fff"},onClick:()=>scrollTo("hero")},"Yun Chen"),
-        ce("div",{className:"nav-links",style:{display:"flex",gap:28,alignItems:"center"}},
-          [["Work","work"],["Experience","experience"]].map(([l,id])=>ce("span",{key:id,onClick:()=>scrollTo(id),className:"nav-link",style:{fontSize:13,color:"rgba(255,255,255,.6)",cursor:"pointer",fontWeight:400}},l)),
-          ce("a",{href:"https://www.linkedin.com/in/yun-chen-6b22a448/",target:"_blank",rel:"noreferrer",className:"nav-link",style:{fontSize:13,color:"#64ffda",textDecoration:"none",fontWeight:500}},"LinkedIn ↗")))),
+  return <div style={{fontFamily:"-apple-system,'SF Pro Display','Helvetica Neue',Helvetica,Arial,sans-serif",background:"#0a0e27",color:"#e8e8e8",overflowX:"hidden"}}>
 
-    ce("section",{id:"hero",className:"hero-section",style:{minHeight:"100vh",display:"flex",alignItems:"center",padding:"120px 40px 80px",position:"relative"}},
-      ce("div",{style:{position:"absolute",top:"5%",left:"15%",width:500,height:500,borderRadius:"50%",background:"radial-gradient(circle, rgba(100,255,218,.08) 0%, transparent 70%)",animation:"float 8s ease-in-out infinite",pointerEvents:"none"}}),
-      ce("div",{style:{position:"absolute",bottom:"15%",left:"5%",width:400,height:400,borderRadius:"50%",background:"radial-gradient(circle, rgba(0,113,227,.1) 0%, transparent 70%)",animation:"float 6s ease-in-out infinite 2s",pointerEvents:"none"}}),
-      ce("div",{className:"hero-grid",style:{maxWidth:1200,width:"100%",margin:"0 auto",display:"grid",gridTemplateColumns:"1fr 1fr",gap:60,alignItems:"center",position:"relative",zIndex:1}},
-        ce("div",null,
-          ce(FadeIn,null,ce("div",{className:"hero-badge",style:{display:"inline-flex",alignItems:"center",gap:8,padding:"6px 16px",borderRadius:24,border:"1px solid rgba(100,255,218,.25)",background:"rgba(100,255,218,.05)",marginBottom:32}},
-            ce("span",{style:{color:"#64ffda",fontSize:14}},"✦"),ce("span",{style:{fontSize:13,color:"#a8e6d9",fontWeight:500}},"AI Product Manager · PayPal · San Jose, CA"))),
-          ce(FadeIn,{delay:0.1},ce("h1",{className:"hero-name",style:{fontSize:90,fontWeight:700,letterSpacing:"-.05em",lineHeight:1,margin:"0 0 24px",color:"#fff"}},"Yun Chen")),
-          ce(FadeIn,{delay:0.2},ce("h2",{className:"hero-tagline",style:{fontSize:32,fontWeight:600,letterSpacing:"-.02em",lineHeight:1.2,margin:"0 0 18px",color:"rgba(255,255,255,.9)"}},"Delivering ",ce("span",{style:{background:"linear-gradient(135deg, #64ffda 0%, #40a9ff 100%)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}},"AI at scale"))),
-          ce(FadeIn,{delay:0.3},ce("div",{className:"cta-buttons",style:{display:"flex",gap:12,alignItems:"center",marginTop:8}},
-            ce("button",{onClick:()=>scrollTo("work"),style:{padding:"14px 32px",borderRadius:40,background:"linear-gradient(135deg, #64ffda 0%, #40a9ff 100%)",color:"#0a0e27",border:"none",fontSize:15,fontWeight:600,cursor:"pointer",transition:"transform .2s, box-shadow .2s"},onMouseEnter:e=>{e.target.style.transform="scale(1.04)";e.target.style.boxShadow="0 8px 30px rgba(100,255,218,.3)"},onMouseLeave:e=>{e.target.style.transform="scale(1)";e.target.style.boxShadow="none"}},"Explore my work ↓"),
-            ce("a",{href:"https://www.linkedin.com/in/yun-chen-6b22a448/",target:"_blank",rel:"noreferrer",style:{padding:"14px 28px",borderRadius:40,background:"transparent",color:"#fff",border:"1.5px solid rgba(255,255,255,.2)",fontSize:15,fontWeight:500,textDecoration:"none",cursor:"pointer",display:"inline-flex",alignItems:"center",gap:6,transition:"border-color .2s"},onMouseEnter:e=>e.currentTarget.style.borderColor="#64ffda",onMouseLeave:e=>e.currentTarget.style.borderColor="rgba(255,255,255,.2)"},"LinkedIn"))),
-          ce(FadeIn,{delay:0.4},ce("div",{className:"hero-stats",style:{display:"flex",gap:40,marginTop:64,flexWrap:"wrap"}},
-            [{v:"9",l:"AI Products"},{v:"$26M+",l:"Impact"},{v:"~50%",l:"Efficiency"},{v:"10+",l:"Years"}].map((m,i)=>ce("div",{key:i},ce("div",{className:"hero-stat-val",style:{fontSize:32,fontWeight:700,letterSpacing:"-.03em",color:"#fff"}},m.v),ce("div",{style:{fontSize:12,color:"rgba(255,255,255,.4)",marginTop:2}},m.l)))))),
-        ce("div",{className:"hero-right"}))),
+    <nav className="nav-wrap" style={{position:"fixed",top:0,left:0,right:0,zIndex:100,background:scrollY>50?"rgba(10,14,39,.88)":"transparent",backdropFilter:scrollY>50?"saturate(180%) blur(20px)":"none",borderBottom:scrollY>50?"1px solid rgba(255,255,255,.06)":"none",transition:"all .3s",padding:"0 40px"}}>
+      <div style={{maxWidth:1200,margin:"0 auto",display:"flex",justifyContent:"space-between",alignItems:"center",height:56}}>
+        <span style={{fontSize:16,fontWeight:700,letterSpacing:"-.02em",cursor:"pointer",color:"#fff"}} onClick={()=>scrollTo("hero")}>Yun Chen</span>
+        <div className="nav-links" style={{display:"flex",gap:28,alignItems:"center"}}>
+          {[["Work","work"],["Experience","experience"]].map(([l,id])=><span key={id} onClick={()=>scrollTo(id)} className="nav-link" style={{fontSize:13,color:"rgba(255,255,255,.6)",cursor:"pointer",fontWeight:400}}>{l}</span>)}
+          <a href="https://www.linkedin.com/in/yun-chen-6b22a448/" target="_blank" rel="noreferrer" className="nav-link" style={{fontSize:13,color:"#64ffda",textDecoration:"none",fontWeight:500}}>LinkedIn ↗</a>
+        </div>
+      </div>
+    </nav>
 
-    ce("section",{id:"work",className:"work-section",style:{padding:"40px 40px 100px"}},
-      ce("div",{style:{maxWidth:1100,margin:"0 auto"}},
-        ce(FadeIn,null,ce("div",{style:{marginBottom:48}},
-          ce("span",{style:{fontSize:13,fontWeight:600,color:"#64ffda",letterSpacing:".04em"}},"PRODUCT PORTFOLIO"),
-          ce("h2",{className:"section-h2",style:{fontSize:44,fontWeight:700,letterSpacing:"-.03em",margin:"4px 0 8px",color:"#fff"}},"Case Studies"),
-          ce("p",{style:{fontSize:17,color:"rgba(255,255,255,.5)",margin:0}},"AI products I built from concept to production"))),
-        ce("div",{className:"work-grid",style:{display:"grid",gridTemplateColumns:"repeat(2, 1fr)",gap:20}},
-          products.map((p,i)=>ce(ProjectCard,{key:p.id,p,idx:i,onOpen:()=>setOpenDetail(i)}))))),
+    <section id="hero" className="hero-section" style={{minHeight:"100vh",display:"flex",alignItems:"center",padding:"120px 40px 80px",position:"relative"}}>
+      <div style={{position:"absolute",top:"5%",left:"15%",width:500,height:500,borderRadius:"50%",background:"radial-gradient(circle, rgba(100,255,218,.08) 0%, transparent 70%)",animation:"float 8s ease-in-out infinite",pointerEvents:"none"}}/>
+      <div style={{position:"absolute",bottom:"15%",left:"5%",width:400,height:400,borderRadius:"50%",background:"radial-gradient(circle, rgba(0,113,227,.1) 0%, transparent 70%)",animation:"float 6s ease-in-out infinite 2s",pointerEvents:"none"}}/>
+      <div className="hero-grid" style={{maxWidth:1200,width:"100%",margin:"0 auto",display:"grid",gridTemplateColumns:"1fr 1fr",gap:60,alignItems:"center",position:"relative",zIndex:1}}>
+        <div>
+          <FadeIn><div className="hero-badge" style={{display:"inline-flex",alignItems:"center",gap:8,padding:"6px 16px",borderRadius:24,border:"1px solid rgba(100,255,218,.25)",background:"rgba(100,255,218,.05)",marginBottom:32}}>
+            <span style={{color:"#64ffda",fontSize:14}}>✦</span><span style={{fontSize:13,color:"#a8e6d9",fontWeight:500}}>AI Product Manager · PayPal · San Jose, CA</span>
+          </div></FadeIn>
+          <FadeIn delay={0.1}><h1 className="hero-name" style={{fontSize:90,fontWeight:700,letterSpacing:"-.05em",lineHeight:1,margin:"0 0 24px",color:"#fff"}}>Yun Chen</h1></FadeIn>
+          <FadeIn delay={0.2}><h2 className="hero-tagline" style={{fontSize:32,fontWeight:600,letterSpacing:"-.02em",lineHeight:1.2,margin:"0 0 18px",color:"rgba(255,255,255,.9)"}}>Delivering <span style={{background:"linear-gradient(135deg, #64ffda 0%, #40a9ff 100%)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}}>AI at scale</span></h2></FadeIn>
+          <FadeIn delay={0.3}><div className="cta-buttons" style={{display:"flex",gap:12,alignItems:"center",marginTop:8}}>
+            <button onClick={()=>scrollTo("work")} style={{padding:"14px 32px",borderRadius:40,background:"linear-gradient(135deg, #64ffda 0%, #40a9ff 100%)",color:"#0a0e27",border:"none",fontSize:15,fontWeight:600,cursor:"pointer",transition:"transform .2s, box-shadow .2s"}} onMouseEnter={e=>{e.target.style.transform="scale(1.04)";e.target.style.boxShadow="0 8px 30px rgba(100,255,218,.3)"}} onMouseLeave={e=>{e.target.style.transform="scale(1)";e.target.style.boxShadow="none"}}>Explore my work ↓</button>
+            <a href="https://www.linkedin.com/in/yun-chen-6b22a448/" target="_blank" rel="noreferrer" style={{padding:"14px 28px",borderRadius:40,background:"transparent",color:"#fff",border:"1.5px solid rgba(255,255,255,.2)",fontSize:15,fontWeight:500,textDecoration:"none",cursor:"pointer",display:"inline-flex",alignItems:"center",gap:6,transition:"border-color .2s"}} onMouseEnter={e=>e.currentTarget.style.borderColor="#64ffda"} onMouseLeave={e=>e.currentTarget.style.borderColor="rgba(255,255,255,.2)"}>LinkedIn</a>
+          </div></FadeIn>
+          <FadeIn delay={0.4}><div className="hero-stats" style={{display:"flex",gap:40,marginTop:64,flexWrap:"wrap"}}>
+            {[{v:"9",l:"AI Products"},{v:"$26M+",l:"Impact"},{v:"~50%",l:"Efficiency"},{v:"10+",l:"Years"}].map((m,i)=><div key={i}><div className="hero-stat-val" style={{fontSize:32,fontWeight:700,letterSpacing:"-.03em",color:"#fff"}}>{m.v}</div><div style={{fontSize:12,color:"rgba(255,255,255,.4)",marginTop:2}}>{m.l}</div></div>)}
+          </div></FadeIn>
+        </div>
+        <div className="hero-right"/>
+      </div>
+    </section>
 
-    openDetail!==null&&ce(DetailModal,{product:products[openDetail],detail:productDetails[openDetail],onClose:()=>setOpenDetail(null)}),
+    <section id="work" className="work-section" style={{padding:"40px 40px 100px"}}>
+      <div style={{maxWidth:1100,margin:"0 auto"}}>
+        <FadeIn><div style={{marginBottom:48}}>
+          <span style={{fontSize:13,fontWeight:600,color:"#64ffda",letterSpacing:".04em"}}>PRODUCT PORTFOLIO</span>
+          <h2 className="section-h2" style={{fontSize:44,fontWeight:700,letterSpacing:"-.03em",margin:"4px 0 8px",color:"#fff"}}>Case Studies</h2>
+          <p style={{fontSize:17,color:"rgba(255,255,255,.5)",margin:0}}>AI products I built from concept to production</p>
+        </div></FadeIn>
+        <ProductShowcase/>
+      </div>
+    </section>
 
-    ce("section",{id:"experience",className:"experience-section",style:{background:"rgba(255,255,255,.02)",padding:"100px 40px",borderTop:"1px solid rgba(255,255,255,.05)",borderBottom:"1px solid rgba(255,255,255,.05)"}},
-      ce("div",{style:{maxWidth:900,margin:"0 auto"}},
-        ce(FadeIn,null,ce("span",{style:{fontSize:13,fontWeight:600,color:"#64ffda",letterSpacing:".04em"}},"CAREER"),ce("h2",{className:"section-h2",style:{fontSize:44,fontWeight:700,letterSpacing:"-.03em",margin:"4px 0 56px",color:"#fff"}},"Experience")),
-        jobs.map((j,i)=>ce(FadeIn,{key:i,delay:i*0.08},
-          ce("div",{className:"exp-row",style:{display:"grid",gridTemplateColumns:"200px 1fr",gap:32,paddingBottom:40,marginBottom:40,borderBottom:i<jobs.length-1?"1px solid rgba(255,255,255,.06)":"none"}},
-            ce("div",{className:"exp-meta"},ce("div",{style:{fontSize:13,color:"rgba(255,255,255,.5)",fontWeight:500}},j.date),ce("div",{style:{fontSize:13,color:"rgba(255,255,255,.4)",marginTop:2}},j.loc)),
-            ce("div",null,ce("h3",{className:"exp-title",style:{fontSize:20,fontWeight:600,margin:"0 0 2px",letterSpacing:"-.01em",color:"#fff"}},j.title),
-              ce("div",{style:{fontSize:15,color:"rgba(255,255,255,.55)",marginBottom:14}},j.company+" · "+j.sub),
-              ce("div",{style:{display:"flex",gap:8,flexWrap:"wrap"}},j.highlights.map((h,hi)=>ce("span",{key:hi,style:{fontSize:12,fontWeight:500,padding:"4px 12px",borderRadius:20,background:"rgba(100,255,218,.08)",color:"#a8e6d9",border:"1px solid rgba(100,255,218,.15)"}},h))))))))),
+    <section id="experience" className="experience-section" style={{background:"rgba(255,255,255,.02)",padding:"100px 40px",borderTop:"1px solid rgba(255,255,255,.05)",borderBottom:"1px solid rgba(255,255,255,.05)"}}>
+      <div style={{maxWidth:900,margin:"0 auto"}}>
+        <FadeIn><span style={{fontSize:13,fontWeight:600,color:"#64ffda",letterSpacing:".04em"}}>CAREER</span><h2 className="section-h2" style={{fontSize:44,fontWeight:700,letterSpacing:"-.03em",margin:"4px 0 56px",color:"#fff"}}>Experience</h2></FadeIn>
+        {jobs.map((j,i)=><FadeIn key={i} delay={i*0.08}>
+          <div className="exp-row" style={{display:"grid",gridTemplateColumns:"200px 1fr",gap:32,paddingBottom:40,marginBottom:40,borderBottom:i<jobs.length-1?"1px solid rgba(255,255,255,.06)":"none"}}>
+            <div className="exp-meta"><div style={{fontSize:13,color:"rgba(255,255,255,.5)",fontWeight:500}}>{j.date}</div><div style={{fontSize:13,color:"rgba(255,255,255,.4)",marginTop:2}}>{j.loc}</div></div>
+            <div><h3 className="exp-title" style={{fontSize:20,fontWeight:600,margin:"0 0 2px",letterSpacing:"-.01em",color:"#fff"}}>{j.title}</h3>
+              <div style={{fontSize:15,color:"rgba(255,255,255,.55)",marginBottom:14}}>{j.company} · {j.sub}</div>
+              <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>{j.highlights.map((h,hi)=><span key={hi} style={{fontSize:12,fontWeight:500,padding:"4px 12px",borderRadius:20,background:"rgba(100,255,218,.08)",color:"#a8e6d9",border:"1px solid rgba(100,255,218,.15)"}}>{h}</span>)}</div>
+            </div>
+          </div>
+        </FadeIn>)}
+      </div>
+    </section>
 
-    ce("section",{className:"footer-section",style:{background:"rgba(0,0,0,.4)",padding:"80px 40px",textAlign:"center",borderTop:"1px solid rgba(255,255,255,.05)"}},
-      ce(FadeIn,null,
-        ce("h2",{className:"footer-h2",style:{fontSize:40,fontWeight:700,color:"#fff",letterSpacing:"-.03em",margin:"0 0 12px"}},"Let's connect"),
-        ce("p",{style:{fontSize:17,color:"rgba(255,255,255,.5)",marginBottom:32}},"Open to AI product leadership roles and advisory opportunities"),
-        ce("a",{href:"https://www.linkedin.com/in/yun-chen-6b22a448/",target:"_blank",rel:"noreferrer",style:{display:"inline-flex",alignItems:"center",gap:8,padding:"14px 32px",borderRadius:40,background:"linear-gradient(135deg, #64ffda 0%, #40a9ff 100%)",color:"#0a0e27",fontSize:15,fontWeight:600,textDecoration:"none",transition:"transform .2s"},onMouseEnter:e=>e.target.style.transform="scale(1.04)",onMouseLeave:e=>e.target.style.transform="scale(1)"},"LinkedIn ↗")),
-      ce("div",{style:{marginTop:48,paddingTop:24,borderTop:"1px solid rgba(255,255,255,.05)",fontSize:12,color:"rgba(255,255,255,.25)"}},"© 2025 Yun Chen. All rights reserved."))
-  );
+    <section className="footer-section" style={{background:"rgba(0,0,0,.4)",padding:"80px 40px",textAlign:"center",borderTop:"1px solid rgba(255,255,255,.05)"}}>
+      <FadeIn>
+        <h2 className="footer-h2" style={{fontSize:40,fontWeight:700,color:"#fff",letterSpacing:"-.03em",margin:"0 0 12px"}}>Let's connect</h2>
+        <p style={{fontSize:17,color:"rgba(255,255,255,.5)",marginBottom:32}}>Open to AI product leadership roles and advisory opportunities</p>
+        <a href="https://www.linkedin.com/in/yun-chen-6b22a448/" target="_blank" rel="noreferrer" style={{display:"inline-flex",alignItems:"center",gap:8,padding:"14px 32px",borderRadius:40,background:"linear-gradient(135deg, #64ffda 0%, #40a9ff 100%)",color:"#0a0e27",fontSize:15,fontWeight:600,textDecoration:"none",transition:"transform .2s"}} onMouseEnter={e=>e.target.style.transform="scale(1.04)"} onMouseLeave={e=>e.target.style.transform="scale(1)"}>LinkedIn ↗</a>
+      </FadeIn>
+      <div style={{marginTop:48,paddingTop:24,borderTop:"1px solid rgba(255,255,255,.05)",fontSize:12,color:"rgba(255,255,255,.25)"}}>© 2025 Yun Chen. All rights reserved.</div>
+    </section>
+  </div>;
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(ce(Site));
+ReactDOM.createRoot(document.getElementById("root")).render(<Site/>);
 </script>
 </body>
 </html>
