@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Grade 4 & 5 Math Core Formulas - Reference Sheet</title>
+<style>
+  @page {
+    size: letter portrait;
+    margin: 0.35in;
+  }
+  * {
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #1a202c;
+    background: #fff;
+    margin: 0;
+    padding: 0;
+    font-size: 8pt;
+    line-height: 1.2;
+  }
+  .page {
+    width: 7.8in;
+    height: 10.3in;
+    margin: 0 auto;
+    page-break-after: always;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .page:last-child {
+    page-break-after: avoid;
+  }
+  .header {
+    border-bottom: 2px solid #2b6cb0;
+    padding-bottom: 3px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .title {
+    font-size: 12.5pt;
+    font-weight: 800;
+    color: #2b6cb0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .sub-title {
+    font-size: 7.5pt;
+    font-weight: 600;
+    color: #4a5568;
+  }
+  .section-header {
+    background-color: #ebf8ff;
+    border-left: 3px solid #3182ce;
+    padding: 2px 5px;
+    font-size: 8.5pt;
+    font-weight: bold;
+    color: #2c5282;
+    margin-top: 4px;
+    margin-bottom: 3px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 4px;
+    font-size: 7.8pt;
+  }
+  th, td {
+    border: 0.5pt solid #cbd5e0;
+    padding: 2.5px 4.5px;
+    text-align: left;
+    vertical-align: middle;
+  }
+  th {
+    background-color: #f7fafc;
+    color: #2d3748;
+    font-weight: 700;
+  }
+  .formula {
+    font-family: "Cambria Math", "Times New Roman", serif;
+    font-size: 8pt;
+    font-weight: 600;
+    color: #97266d;
+    white-space: nowrap;
+  }
+  .highlight {
+    background-color: #fffaf0;
+    font-weight: 600;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin-bottom: 3px;
+  }
+  .box {
+    border: 0.5pt solid #cbd5e0;
+    border-radius: 4px;
+    padding: 4px 5px;
+    background: #fff;
+  }
+  .box-title {
+    font-weight: bold;
+    color: #2c5282;
+    border-bottom: 0.5pt solid #e2e8f0;
+    padding-bottom: 1.5px;
+    margin-bottom: 2.5px;
+    font-size: 7.8pt;
+  }
+  .prime-box {
+    background: #faf5ff;
+    border: 0.5pt solid #d6bcfa;
+    border-radius: 4px;
+    padding: 3px 5px;
+    margin-top: 3px;
+    text-align: center;
+  }
+  .prime-list {
+    font-family: "Cambria Math", "Courier New", monospace;
+    font-weight: 700;
+    font-size: 8pt;
+    color: #553c9e;
+    letter-spacing: 1px;
+    line-height: 1.25;
+  }
+  ul {
+    margin: 0;
+    padding-left: 12px;
+  }
+  li {
+    margin-bottom: 1.5px;
+  }
+  .footer {
+    border-top: 0.5pt solid #e2e8f0;
+    padding-top: 2px;
+    font-size: 7pt;
+    color: #a0aec0;
+    display: flex;
+    justify-content: space-between;
+  }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1: GRADE 4 -->
+<div class="page">
+  <div>
+    <div class="header">
+      <span class="title">GRADE 4 MATHEMATICS / 四年级数学必备公式表</span>
+      <span class="sub-title">US Common Core &amp; 国内校本大纲对照 (Side A)</span>
+    </div>
+
+    <!-- Section 1: Properties of Operations -->
+    <div class="section-header">1. 运算定律与性质 / Properties of Operations</div>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 28%;">定律名称 (Term &amp; Law)</th>
+          <th style="width: 25%;">字母公式 (Algebraic Formula)</th>
+          <th style="width: 47%;">应用与技巧 (Key Memory Strategy)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>加法交换律</strong><br>Commutative Prop. (+)</td>
+          <td class="formula">a + b = b + a</td>
+          <td>两数相加换位置，和不变。<br><span class="highlight">凑整常用 / Friendly numbers</span>: 27 + 73 = 100</td>
+        </tr>
+        <tr>
+          <td><strong>加法结合律</strong><br>Associative Prop. (+)</td>
+          <td class="formula">(a + b) + c = a + (b + c)</td>
+          <td>连加分组不改和，优先组合凑整十、整百、整千。</td>
+        </tr>
+        <tr>
+          <td><strong>减法性质</strong><br>Subtraction Property</td>
+          <td class="formula">a - b - c = a - (b + c)</td>
+          <td>连续减去两数等于减去和；括号前是减号，去括号要变号。</td>
+        </tr>
+        <tr>
+          <td><strong>乘法交换律</strong><br>Commutative Prop. (×)</td>
+          <td class="formula">a × b = b × a</td>
+          <td><strong>黄金组合必背 / Benchmark pairs:</strong><br>25 × 4 = 100, &nbsp; 125 × 8 = 1000</td>
+        </tr>
+        <tr>
+          <td><strong>乘法结合律</strong><br>Associative Prop. (×)</td>
+          <td class="formula">(a × b) × c = a × (b × c)</td>
+          <td>拆数凑整 / Factor decomposition:<br>25 × 32 = (25 × 4) × 8 = 100 × 8 = 800</td>
+        </tr>
+        <tr class="highlight">
+          <td><strong>乘法分配律</strong><br>Distributive Property</td>
+          <td class="formula">(a + b) × c = ac + bc<br>(a - b) × c = ac - bc</td>
+          <td><strong>最高频考点！</strong>拆开相乘再相加/减。<br>逆用为“提取公因数” (Factoring out common factor)。</td>
+        </tr>
+        <tr>
+          <td><strong>除法性质</strong><br>Division Property</td>
+          <td class="formula">a ÷ b ÷ c = a ÷ (bc)</td>
+          <td>360 ÷ 8 ÷ 5 = 360 ÷ (8 × 5) = 360 ÷ 40 = 9 &nbsp; (b, c ≠ 0)</td>
+        </tr>
+        <tr>
+          <td><strong>商不变性质</strong><br>Quotient Invariance</td>
+          <td class="formula">a ÷ b = (a×c) ÷ (b×c)<br>a ÷ b = (a÷c) ÷ (b÷c)</td>
+          <td>被除数与除数同乘或同除以相同非零数，<strong>商不变</strong>。<br><strong>陷阱 / Watch Remainder:</strong> 余数随之放大或缩小相同的倍数！</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Section 2: How to Calculate GCF & LCM (Newly Integrated for Grade 4) -->
+    <div class="section-header">2. 最大公因数与最小公倍数的计算 / How to Calculate GCF &amp; LCM</div>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 22%;">计算方法 (Method)</th>
+          <th style="width: 39%;">最大公因数 (GCF / Greatest Common Factor)</th>
+          <th style="width: 39%;">最小公倍数 (LCM / Least Common Multiple)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>列举法<br>Listing Method</strong><br><em>(适合较小数)</em></td>
+          <td><strong>列出所有因数，挑出最大的公共数：</strong><br>
+            • Factors of 12: 1, 2, 3, 4, <strong>6</strong>, 12<br>
+            • Factors of 18: 1, 2, 3, <strong>6</strong>, 9, 18<br>
+            → <span class="formula">GCF(12, 18) = 6</span></td>
+          <td><strong>列出两数倍数，找出第一个共同的倍数：</strong><br>
+            • Multiples of 12: 12, 24, <strong>36</strong>, 48...<br>
+            • Multiples of 18: 18, <strong>36</strong>, 54...<br>
+            → <span class="formula">LCM(12, 18) = 36</span></td>
+        </tr>
+        <tr class="highlight">
+          <td><strong>短除法 / 梯形法<br>Ladder Method</strong><br><em>(核心高效法)</em></td>
+          <td><strong>“只乘左边” (Multiply Left Column Only)：</strong><br>
+            用两数的公共质因数连续除，直到商互质。<br>
+            把<strong>左侧除数全部相乘</strong>即为 GCF。<br>
+            • 例：除以 2 得 6, 9；再除以 3 得 2, 3。<br>
+            → <span class="formula">GCF = 2 × 3 = 6</span></td>
+          <td><strong>“乘成一个 L 型” (Multiply in an 'L' Shape)：</strong><br>
+            将<strong>左侧所有除数</strong>与<strong>底端最后剩下的商</strong>全部相乘。<br>
+            • 例：左侧为 2, 3；底端为 2, 3。<br>
+            → <span class="formula">LCM = 2 × 3 × 2 × 3 = 36</span></td>
+        </tr>
+        <tr>
+          <td><strong>两数特殊关系<br>Special Relations</strong></td>
+          <td>• 若 a, b <strong>互质</strong> (Coprime): <span class="formula">GCF(a, b) = 1</span><br>
+            • 若 a 是 b 的<strong>倍数</strong>: <span class="formula">GCF(a, b) = b</span></td>
+          <td>• 若 a, b <strong>互质</strong> (Coprime): <span class="formula">LCM(a, b) = a × b</span><br>
+            • 若 a 是 b 的<strong>倍数</strong>: <span class="formula">LCM(a, b) = a</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Section 3: Angles, Triangles & Geometry -->
+    <div class="section-header">3. 角度、三角形与平面几何 / Angles, Triangles &amp; Geometry</div>
+    <div class="grid-2">
+      <div class="box">
+        <div class="box-title">角的分类 / Classification of Angles</div>
+        <ul>
+          <li><strong>锐角 (Acute angle):</strong> 0° &lt; θ &lt; 90°</li>
+          <li><strong>直角 (Right angle):</strong> θ = 90°</li>
+          <li><strong>钝角 (Obtuse angle):</strong> 90° &lt; θ &lt; 180°</li>
+          <li><strong>平角 (Straight angle):</strong> θ = 180° (等于 2 个直角)</li>
+          <li><strong>周角 (Full angle / Revolution):</strong> θ = 360° (等于 4 个直角)</li>
+        </ul>
+      </div>
+      <div class="box">
+        <div class="box-title">三角形定理 / Triangle Properties</div>
+        <ul>
+          <li><strong>内角和定理 (Triangle Angle Sum):</strong><br>
+            <span class="formula">∠1 + ∠2 + ∠3 = 180°</span>
+          </li>
+          <li><strong>两边之和大于第三边 (Triangle Inequality):</strong><br>
+            任意两边之和大于第三边 (<span class="formula">a + b &gt; c</span>)。<br>
+            <em>速判: 较短两边之和大于最长边 / Sum of 2 shorter sides &gt; longest.</em>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Section 4: Unit Conversions -->
+    <div class="section-header">4. 常用度量衡与面积进率 / Measurements &amp; Metric Conversion</div>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 25%;">分类 (Category)</th>
+          <th style="width: 50%;">标准换算率 (Conversion Rates)</th>
+          <th style="width: 25%;">速记提示 (Tip)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>长度 (Length)</strong></td>
+          <td>1 km = 1,000 m | 1 m = 10 dm = 100 cm | 1 dm = 10 cm | 1 cm = 10 mm</td>
+          <td>相邻公制单位为 10 进制</td>
+        </tr>
+        <tr>
+          <td><strong>常规面积 (Area)</strong></td>
+          <td>1 m² = 100 dm² = 10,000 cm² | 1 dm² = 100 cm²</td>
+          <td>长度平方关系，进率为 100</td>
+        </tr>
+        <tr class="highlight">
+          <td><strong>土地面积 (Land)</strong></td>
+          <td><strong>1 公顷 (Hectare / ha) = 10,000 m²</strong><br><strong>1 平方千米 (km²) = 100 公顷 = 1,000,000 m²</strong></td>
+          <td>边长 100m 正方形为 1 公顷；<br>边长 1km 正方形为 1 平方千米。</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="footer">
+    <span>Grade 4 Core Math Checklist</span>
+    <span>Page 1 of 2</span>
+  </div>
+</div>
+
+<!-- PAGE 2: GRADE 5 -->
+<div class="page">
+  <div>
+    <div class="header">
+      <span class="title">GRADE 5 MATHEMATICS / 五年级数学必备公式表</span>
+      <span class="sub-title">US Common Core &amp; 国内校本大纲对照 (Side B)</span>
+    </div>
+
+    <!-- Section 1: 2D & 3D Geometry -->
+    <div class="section-header">1. 多边形面积与立体几何 / 2D Area &amp; 3D Volume</div>
+    <table>
+      <thead>
+        <tr>
+          <th>图形 / 几何体 (Shape/Solid)</th>
+          <th>核心面积 / 体积公式</th>
+          <th>逆向逆推公式 (Inverse)</th>
+          <th>易错要点 (Watch Out)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>平行四边形</strong><br>Parallelogram</td>
+          <td class="formula">A = ah (or bh)</td>
+          <td class="formula">a = A ÷ h<br>h = A ÷ a</td>
+          <td>底和高必须<strong>垂直对应</strong>。<br><em>Base and height must be perpendicular.</em></td>
+        </tr>
+        <tr class="highlight">
+          <td><strong>三角形</strong><br>Triangle</td>
+          <td class="formula">A = ½ah = ah ÷ 2</td>
+          <td class="formula">a = 2A ÷ h<br>h = 2A ÷ a</td>
+          <td><strong>切记除以 2！(Divide by 2)</strong><br>逆向推导必须<strong>先乘 2 再除</strong>。</td>
+        </tr>
+        <tr class="highlight">
+          <td><strong>梯形</strong><br>Trapezoid</td>
+          <td class="formula">A = (a + b)h ÷ 2</td>
+          <td class="formula">h = 2A ÷ (a + b)<br>a + b = 2A ÷ h</td>
+          <td>a: 上底 (Top), b: 下底 (Bottom)。<br><strong>同样必须除以 2！</strong></td>
+        </tr>
+        <tr>
+          <td><strong>长方体</strong><br>Rectangular Prism</td>
+          <td>棱长和: <span class="formula">L = 4(l + w + h)</span><br>表面积: <span class="formula">SA = 2(lw + lh + wh)</span><br>体积: <span class="formula">V = lwh = Bh</span></td>
+          <td class="formula">h = V ÷ (lw)<br>B = lw (底面积 / Base Area)</td>
+          <td>表面积为 6 个面面积之和；<br>底面积 <span class="formula">B = lw</span>。</td>
+        </tr>
+        <tr>
+          <td><strong>正方体</strong><br>Cube</td>
+          <td>棱长和: <span class="formula">L = 12s</span><br>表面积: <span class="formula">SA = 6s²</span><br>体积: <span class="formula">V = s³ = Bh</span></td>
+          <td class="formula">s² = SA ÷ 6</td>
+          <td>棱长扩大 n 倍，表面积扩大 n² 倍，体积扩大 n³ 倍。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="box" style="margin-bottom: 4px; background: #fffaf0;">
+      <strong>容积与体积单位换算 (千进制 / Capacity):</strong>
+      <span class="formula">1 m³ = 1,000 dm³ = 1,000,000 cm³</span> &nbsp;|&nbsp;
+      <span class="formula">1 dm³ = 1 L (升)</span> &nbsp;|&nbsp;
+      <span class="formula">1 cm³ = 1 mL (毫升)</span> &nbsp;|&nbsp;
+      <span class="formula">1 L = 1,000 mL</span>
+    </div>
+
+    <!-- Section 2: Number Theory -->
+    <div class="section-header">2. 数论核心：因数、倍数、质数与整除 / Factors, Multiples &amp; Divisibility</div>
+    <div class="grid-2">
+      <div class="box">
+        <div class="box-title">整除判定规则 / Divisibility Rules</div>
+        <ul>
+          <li><strong>2 的倍数 / Divisible by 2:</strong><br>末位为偶数 / Last digit is even (0, 2, 4, 6, 8)</li>
+          <li><strong>5 的倍数 / Divisible by 5:</strong><br>末位是 0 或 5 / Last digit is 0 or 5</li>
+          <li><strong>3 (或 9) 的倍数 / Divisible by 3 (or 9):</strong><br>各数位之和能被 3 (或 9) 整除 / Sum of digits is divisible by 3 (or 9)</li>
+          <li><strong>4 (或 25) 的倍数 / Divisible by 4 (or 25):</strong><br>末两位数能被 4 (或 25) 整除 / Last two digits form a number divisible by 4 (or 25)</li>
+          <li><strong>8 (或 125) 的倍数 / Divisible by 8 (or 125):</strong><br>末三位数能被 8 (或 125) 整除 / Last three digits form a number divisible by 8 (or 125)</li>
+        </ul>
+      </div>
+      <div class="box">
+        <div class="box-title">公因数与公倍数性质 / GCF &amp; LCM Rules</div>
+        <ul>
+          <li><strong>互质数 / Coprime (Relatively Prime):</strong><br>公因数只有 1 / Their only common factor is 1.</li>
+          <li><strong>若 a 与 b 互质 / If a &amp; b are coprime:</strong><br><span class="formula">GCF(a, b) = 1, &nbsp; LCM(a, b) = ab</span></li>
+          <li><strong>若 a 是 b 的倍数 / If a is a multiple of b:</strong><br><span class="formula">GCF(a, b) = b, &nbsp; LCM(a, b) = a</span></li>
+          <li><strong>乘积恒等式 / Product Identity:</strong><br><span class="formula">a × b = GCF(a, b) × LCM(a, b)</span></li>
+          <li><strong>铁律 / Universal Truths:</strong><br><strong>1</strong> 既不是质数也不是合数；<strong>2</strong> 是唯一的偶质数。<br><em>1 is neither prime nor composite; 2 is the only even prime.</em></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="prime-box">
+      <div style="font-weight: bold; color: #44337a; font-size: 7.8pt; margin-bottom: 1.5px;">
+        100 以内的 25 个质数全表 / The 25 Primes Under 100 (必背 / Memorize)
+      </div>
+      <div class="prime-list">
+        02, 03, 05, 07 &nbsp;|&nbsp; 11, 13, 17, 19 &nbsp;|&nbsp; 23, 29 &nbsp;|&nbsp; 31, 37<br>
+        41, 43, 47 &nbsp;|&nbsp; 53, 59 &nbsp;|&nbsp; 61, 67 &nbsp;|&nbsp; 71, 73, 79 &nbsp;|&nbsp; 83, 89 &nbsp;|&nbsp; 97
+      </div>
+    </div>
+
+    <!-- Section 3: Fractions & Decimals -->
+    <div class="section-header">3. 分数与方程性质 / Fractions &amp; Algebraic Properties</div>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 30%;">核心性质 (Core Rule)</th>
+          <th style="width: 35%;">公式定义 (Formula)</th>
+          <th style="width: 35%;">核心用途与法则 (Usage)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>分数的基本性质</strong><br>Fundamental Fraction Prop.</td>
+          <td class="formula">a/b = (a×c)/(b×c) = (a÷c)/(b÷c)<br>(b, c ≠ 0)</td>
+          <td>分子分母同乘或同除以相同非零数，分数值不变。是<strong>约分</strong>与<strong>通分</strong>的唯一依据。</td>
+        </tr>
+        <tr>
+          <td><strong>约分与最简分数</strong><br>Simplifying Fractions</td>
+          <td>分子分母同除以最大公因数：<br><span class="formula">a/b ÷ GCF(a,b)</span></td>
+          <td>分子分母互质的分数叫最简分数 (Simplest form / Reduced fraction)。</td>
+        </tr>
+        <tr>
+          <td><strong>通分与异分母加减</strong><br>Common Denominators</td>
+          <td>利用最小公倍数统一分母：<br><span class="formula">LCD = LCM(b, d)</span></td>
+          <td>异分母分数相加减，先通分化成同分母，再按照同分母分数加减法则计算。</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="footer">
+    <span>Grade 5 Core Math Checklist</span>
+    <span>Page 2 of 2</span>
+  </div>
+</div>
+
+</body>
+</html>
